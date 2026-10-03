@@ -1,330 +1,2241 @@
+```html
 <!DOCTYPE html>
 <html lang="sr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
-<title>Digitalni domaćin — Zlatibor DEMO</title>
+<title>Digitalni domaćin — Zlatibor</title>
+
 <style>
 :root{
-  --bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#687386;--primary:#0f172a;
-  --accent:#d4a84f;--line:#e8ebf1;--soft:#f0f3f8;--danger:#b42318;--success:#16794b;
+--bg:#f5f7fb;
+--card:#fff;
+--text:#172033;
+--muted:#687386;
+--primary:#0f172a;
+--accent:#d4a84f;
+--line:#e8ebf1;
+--soft:#f0f3f8;
+--danger:#b42318;
+--success:#16794b;
 }
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
-button,a{font:inherit} button{cursor:pointer;border:0}
-.hero{min-height:430px;background:linear-gradient(135deg,#0b1220 0%,#17243a 55%,#243a57 100%);color:white;padding:24px 20px 34px;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;background:rgba(212,168,79,.12);right:-110px;top:-100px}
-.topbar{max-width:760px;margin:auto;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
-.brand{font-weight:800;letter-spacing:.2px}.lang{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);padding:8px 12px;border-radius:20px}
-.welcome{max-width:760px;margin:58px auto 0;position:relative;z-index:2;display:grid;grid-template-columns:1fr 145px;gap:25px;align-items:center}
-.eyebrow{color:#e9c977;text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800}
-h1{font-size:clamp(34px,8vw,58px);line-height:.98;margin:10px 0 16px;letter-spacing:-2px}
-.welcome p{font-size:17px;line-height:1.6;color:#d9e0ea;max-width:520px;margin:0}
-.avatar{width:132px;height:132px;border-radius:40px;background:linear-gradient(145deg,#fff,#e9edf4);display:flex;align-items:center;justify-content:center;font-size:68px;box-shadow:0 18px 45px rgba(0,0,0,.25);animation:float 4s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-8px)}}
-.container{max-width:760px;margin:-36px auto 50px;padding:0 16px;position:relative;z-index:4}
-.quick{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:12px;box-shadow:0 15px 45px rgba(15,23,42,.12)}
-.quickgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.quick button{background:var(--soft);border-radius:16px;padding:14px 8px;color:var(--text);font-weight:750}
-.quick .ico{font-size:22px;display:block;margin-bottom:5px}
-.section{margin-top:25px}.section-title{display:flex;justify-content:space-between;align-items:end;margin:0 4px 12px}
-.section-title h2{font-size:22px;margin:0}.section-title span{font-size:13px;color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 5px 18px rgba(15,23,42,.04);transition:.2s}
-.card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(15,23,42,.08)}
-.card button{background:none;padding:0;text-align:left;width:100%;color:inherit}
-.card .icon{font-size:29px;margin-bottom:10px}.card h3{margin:0 0 5px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:var(--bg);
+color:var(--text)
+}
+
+button,a{font:inherit}
+button{cursor:pointer;border:0}
+
+.hero{
+min-height:430px;
+background:
+linear-gradient(135deg,#0b1220 0%,#17243a 55%,#243a57 100%);
+color:white;
+padding:24px 20px 34px;
+position:relative;
+overflow:hidden
+}
+
+.hero:before{
+content:"";
+position:absolute;
+width:330px;
+height:330px;
+border-radius:50%;
+background:rgba(212,168,79,.12);
+right:-110px;
+top:-100px
+}
+
+.topbar{
+max-width:760px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:relative;
+z-index:2
+}
+
+.brand{
+font-weight:800;
+letter-spacing:.2px
+}
+
+.lang{
+background:rgba(255,255,255,.12);
+color:#fff;
+border:1px solid rgba(255,255,255,.18);
+padding:8px 12px;
+border-radius:20px
+}
+
+.welcome{
+max-width:760px;
+margin:58px auto 0;
+position:relative;
+z-index:2;
+display:grid;
+grid-template-columns:1fr 145px;
+gap:25px;
+align-items:center
+}
+
+.eyebrow{
+color:#e9c977;
+text-transform:uppercase;
+letter-spacing:2px;
+font-size:12px;
+font-weight:800
+}
+
+h1{
+font-size:clamp(34px,8vw,58px);
+line-height:.98;
+margin:10px 0 16px;
+letter-spacing:-2px
+}
+
+.welcome p{
+font-size:17px;
+line-height:1.6;
+color:#d9e0ea;
+max-width:520px;
+margin:0
+}
+
+.avatar{
+width:132px;
+height:132px;
+border-radius:40px;
+background:linear-gradient(145deg,#fff,#e9edf4);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:68px;
+box-shadow:0 18px 45px rgba(0,0,0,.25);
+animation:float 4s ease-in-out infinite
+}
+
+@keyframes float{
+50%{transform:translateY(-8px)}
+}
+
+.container{
+max-width:760px;
+margin:-36px auto 50px;
+padding:0 16px;
+position:relative;
+z-index:4
+}
+
+.quick{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:24px;
+padding:12px;
+box-shadow:0 15px 45px rgba(15,23,42,.12)
+}
+
+.quickgrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px
+}
+
+.quick button{
+background:var(--soft);
+border-radius:16px;
+padding:14px 8px;
+color:var(--text);
+font-weight:750
+}
+
+.quick .ico{
+font-size:22px;
+display:block;
+margin-bottom:5px
+}
+
+.section{margin-top:25px}
+
+.section-title{
+display:flex;
+justify-content:space-between;
+align-items:end;
+margin:0 4px 12px
+}
+
+.section-title h2{
+font-size:22px;
+margin:0
+}
+
+.section-title span{
+font-size:13px;
+color:var(--muted)
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:20px;
+padding:18px;
+box-shadow:0 5px 18px rgba(15,23,42,.04);
+transition:.2s
+}
+
+.card:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 26px rgba(15,23,42,.08)
+}
+
+.card button{
+background:none;
+padding:0;
+text-align:left;
+width:100%;
+color:inherit
+}
+
+.card .icon{
+font-size:29px;
+margin-bottom:10px
+}
+
+.card h3{
+margin:0 0 5px;
+font-size:16px
+}
+
+.card p{
+margin:0;
+color:var(--muted);
+font-size:13px;
+line-height:1.5
+}
+
 .wide{grid-column:1/-1}
-.info{display:flex;gap:10px;align-items:center;padding:14px;background:#fff;border:1px solid var(--line);border-radius:16px;margin-top:10px}
-.info b{display:block}.info small{color:var(--muted)}
-.primary{background:var(--primary)!important;color:#fff!important;padding:13px 16px!important;border-radius:13px!important;font-weight:800!important;text-align:center!important}
-.gold{background:var(--accent)!important;color:#17120a!important}
-.mapbox{height:280px;border-radius:20px;background:linear-gradient(135deg,#dce9dc,#eef2e6);position:relative;overflow:hidden;border:1px solid #d9e0d6}
-.map-road{position:absolute;background:rgba(255,255,255,.85);height:16px;transform:rotate(-18deg);width:130%;left:-15%;top:48%}
-.map-road.r2{transform:rotate(30deg);top:25%}.map-road.r3{transform:rotate(-3deg);top:72%}
-.pin{position:absolute;transform:translate(-50%,-100%);font-size:35px}.pin.main{left:52%;top:54%}.pin.shop{left:25%;top:35%}.pin.food{left:73%;top:30%}.pin.ski{left:76%;top:75%}
-.map-label{position:absolute;background:#fff;padding:7px 10px;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.12);font-size:11px;font-weight:750}
-.ml1{left:15%;top:43%}.ml2{right:12%;top:36%}.ml3{right:8%;bottom:10%}
-.list{display:grid;gap:10px}.listrow{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px}
-.listrow .big{font-size:26px}.listrow h3{margin:0 0 3px;font-size:15px}.listrow p{margin:0;color:var(--muted);font-size:12px}
-.action{margin-left:auto;background:var(--soft);padding:9px 11px;border-radius:11px;font-size:12px;font-weight:800;color:var(--text)}
-.service{display:flex;align-items:center;gap:12px}.service .price{margin-left:auto;font-weight:850;color:var(--success)}
 
-/* KONTAKT SEKCIJA */
-.call{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:min(728px,calc(100% - 30px));z-index:20;background:#0f172a;color:#fff;padding:14px 18px;border-radius:24px;box-shadow:0 12px 35px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:space-between}
-.call small{color:#bfc8d5}
-.call-actions{display:flex;gap:8px}
-.call-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;transition:.2s}
-.call-btn:hover{transform:scale(1.08)}
-.btn-phone{background:#334155;color:#fff}
-.btn-viber{background:#7360f2;color:#fff}
-.btn-wa{background:#25d366;color:#fff}
-
-footer{text-align:center;color:var(--muted);font-size:12px;padding:20px 0 100px}
-.modal{position:fixed;inset:0;background:rgba(7,12,20,.55);display:none;align-items:flex-end;justify-content:center;z-index:50;padding:0}
-.modal.show{display:flex}.sheet{background:#fff;width:min(760px,100%);max-height:88vh;overflow:auto;border-radius:28px 28px 0 0;padding:24px 20px 30px;animation:up .25s ease}
-@keyframes up{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
-.sheethead{display:flex;justify-content:space-between;align-items:center}.sheet h2{margin:0;font-size:24px}.close{background:var(--soft);width:38px;height:38px;border-radius:50%;font-size:20px}
-.sheet p,.sheet li{line-height:1.65;color:#556174}.sheet ul{padding-left:20px}.copy{margin-top:12px;background:var(--soft);padding:13px;border-radius:13px;display:flex;justify-content:space-between;gap:10px}.copy button{background:var(--primary);color:#fff;padding:8px 11px;border-radius:9px;font-size:12px;font-weight:800}
-.rating{display:flex;gap:7px;margin:15px 0}.rating button{font-size:30px;background:none;opacity:.45}.rating button.active{opacity:1}
-@media(max-width:560px){
- .welcome{grid-template-columns:1fr;text-align:left;margin-top:42px}.avatar{width:88px;height:88px;border-radius:28px;font-size:46px;position:absolute;right:0;top:-25px}
- .hero{min-height:445px}.quickgrid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}
- .wide{grid-column:auto}.call{padding:12px 15px}.call small{display:none}
+.info{
+display:flex;
+gap:10px;
+align-items:center;
+padding:14px;
+background:#fff;
+border:1px solid var(--line);
+border-radius:16px;
+margin-top:10px
 }
 
-.premium-badge{display:inline-flex;background:rgba(212,168,79,.16);border:1px solid rgba(233,201,119,.3);color:#f0d58d;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:800;letter-spacing:.7px;margin-bottom:12px}
+.info b{display:block}
+.info small{color:var(--muted)}
 
-/* SLAJDER SA SLIKAMA ZLATIBORA */
-.slider{margin-top:18px;position:relative;height:210px;border-radius:24px;overflow:hidden;box-shadow:0 15px 40px rgba(15,23,42,.13);background:#1b2c3d}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .7s;display:flex;align-items:flex-end;padding:22px;background-size:cover;background-position:center}
+.primary{
+background:var(--primary)!important;
+color:#fff!important;
+padding:13px 16px!important;
+border-radius:13px!important;
+font-weight:800!important;
+text-align:center!important
+}
+
+.gold{
+background:var(--accent)!important;
+color:#17120a!important
+}
+
+.mapbox{
+height:280px;
+border-radius:20px;
+background:linear-gradient(135deg,#dce9dc,#eef2e6);
+position:relative;
+overflow:hidden;
+border:1px solid #d9e0d6
+}
+
+.map-road{
+position:absolute;
+background:rgba(255,255,255,.85);
+height:16px;
+transform:rotate(-18deg);
+width:130%;
+left:-15%;
+top:48%
+}
+
+.map-road.r2{
+transform:rotate(30deg);
+top:25%
+}
+
+.map-road.r3{
+transform:rotate(-3deg);
+top:72%
+}
+
+.pin{
+position:absolute;
+transform:translate(-50%,-100%);
+font-size:35px
+}
+
+.pin.main{left:52%;top:54%}
+.pin.shop{left:25%;top:35%}
+.pin.food{left:73%;top:30%}
+.pin.ski{left:76%;top:75%}
+
+.map-label{
+position:absolute;
+background:#fff;
+padding:7px 10px;
+border-radius:10px;
+box-shadow:0 3px 12px rgba(0,0,0,.12);
+font-size:11px;
+font-weight:750
+}
+
+.ml1{left:15%;top:43%}
+.ml2{right:12%;top:36%}
+.ml3{right:8%;bottom:10%}
+
+.list{
+display:grid;
+gap:10px
+}
+
+.listrow{
+display:flex;
+gap:12px;
+align-items:center;
+background:#fff;
+border:1px solid var(--line);
+border-radius:17px;
+padding:14px
+}
+
+.listrow .big{font-size:26px}
+
+.listrow h3{
+margin:0 0 3px;
+font-size:15px
+}
+
+.listrow p{
+margin:0;
+color:var(--muted);
+font-size:12px
+}
+
+.action{
+margin-left:auto;
+background:var(--soft);
+padding:9px 11px;
+border-radius:11px;
+font-size:12px;
+font-weight:800;
+color:var(--text)
+}
+
+.service{
+display:flex;
+align-items:center;
+gap:12px
+}
+
+.service .price{
+margin-left:auto;
+font-weight:850;
+color:var(--success)
+}
+
+.call{
+position:fixed;
+bottom:16px;
+left:50%;
+transform:translateX(-50%);
+width:min(728px,calc(100% - 30px));
+z-index:20;
+background:#0f172a;
+color:#fff;
+padding:12px 14px;
+border-radius:18px;
+box-shadow:0 12px 35px rgba(0,0,0,.25);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px
+}
+
+.call a{
+color:#fff;
+text-decoration:none;
+font-weight:850
+}
+
+.call small{color:#bfc8d5}
+
+.contact-buttons{
+display:flex;
+gap:7px
+}
+
+.contact-btn{
+padding:10px 12px;
+border-radius:12px;
+font-size:12px;
+font-weight:850;
+text-decoration:none;
+color:#fff!important;
+white-space:nowrap
+}
+
+.whatsapp{
+background:#25D366
+}
+
+.viber{
+background:#7360F2
+}
+
+.phone{
+background:#fff;
+color:#0f172a!important
+}
+
+footer{
+text-align:center;
+color:var(--muted);
+font-size:12px;
+padding:20px 0 110px
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(7,12,20,.55);
+display:none;
+align-items:flex-end;
+justify-content:center;
+z-index:50;
+padding:0
+}
+
+.modal.show{display:flex}
+
+.sheet{
+background:#fff;
+width:min(760px,100%);
+max-height:88vh;
+overflow:auto;
+border-radius:28px 28px 0 0;
+padding:24px 20px 30px;
+animation:up .25s ease
+}
+
+@keyframes up{
+from{transform:translateY(30px);opacity:.6}
+to{transform:none;opacity:1}
+}
+
+.sheethead{
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.sheet h2{
+margin:0;
+font-size:24px
+}
+
+.close{
+background:var(--soft);
+width:38px;
+height:38px;
+border-radius:50%;
+font-size:20px
+}
+
+.sheet p,.sheet li{
+line-height:1.65;
+color:#556174
+}
+
+.sheet ul{padding-left:20px}
+
+.copy{
+margin-top:12px;
+background:var(--soft);
+padding:13px;
+border-radius:13px;
+display:flex;
+justify-content:space-between;
+gap:10px
+}
+
+.copy button{
+background:var(--primary);
+color:#fff;
+padding:8px 11px;
+border-radius:9px;
+font-size:12px;
+font-weight:800
+}
+
+.rating{
+display:flex;
+gap:7px;
+margin:15px 0
+}
+
+.rating button{
+font-size:30px;
+background:none;
+opacity:.45
+}
+
+.rating button.active{
+opacity:1
+}
+
+.premium-badge{
+display:inline-flex;
+background:rgba(212,168,79,.16);
+border:1px solid rgba(233,201,119,.3);
+color:#f0d58d;
+border-radius:999px;
+padding:7px 11px;
+font-size:11px;
+font-weight:800;
+letter-spacing:.7px;
+margin-bottom:12px
+}
+
+/* ZLATIBOR SLIDER */
+
+.slider{
+margin-top:18px;
+position:relative;
+height:270px;
+border-radius:24px;
+overflow:hidden;
+background:#182536;
+box-shadow:0 15px 40px rgba(15,23,42,.18)
+}
+
+.slide{
+position:absolute;
+inset:0;
+opacity:0;
+transition:opacity .8s;
+display:flex;
+align-items:flex-end;
+padding:24px;
+background-size:cover;
+background-position:center
+}
+
+.slide:after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+to top,
+rgba(4,10,18,.78),
+rgba(4,10,18,.05) 70%
+)
+}
+
 .slide.active{opacity:1}
-.slide:nth-child(1){background-image:linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.1)), url('https://images.unsplash.com/photo-1542475459-2475143aeb18?w=800&q=80')}
-.slide:nth-child(2){background-image:linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.1)), url('https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80')}
-.slide:nth-child(3){background-image:linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.1)), url('https://images.unsplash.com/photo-1520114881182-353d262ff2ac?w=800&q=80')}
-.slide h3{color:#fff;font-size:23px;margin:0 0 5px}.slide p{color:#e8edf3;margin:0;font-size:13px}.dots{position:absolute;right:16px;bottom:15px;display:flex;gap:6px}.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4)}.dot.active{width:22px;background:#fff;border-radius:10px}
 
-.scratch-card{background:linear-gradient(145deg,#fff,#f7f2e7);border:1px solid #ead9ae;border-radius:24px;padding:22px;text-align:center}.scratch-card h2{margin:0 0 6px}.scratch-card p{color:#687386;font-size:13px}.scratch{position:relative;width:min(100%,330px);height:130px;margin:auto;border-radius:18px;overflow:hidden;background:#c5c9ce;border:2px solid #d2b36a;display:flex;align-items:center;justify-content:center}.scratch-prize{font-size:25px;font-weight:900;color:#152033;padding:15px}.scratch canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}.scratch-note{font-size:11px!important;color:#7c6a3f!important}.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.lang-btn{padding:15px;border-radius:15px;background:#f0f3f8;font-weight:800;text-align:left}
+.slide:nth-child(1){
+background-image:url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85")
+}
+
+.slide:nth-child(2){
+background-image:url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=85")
+}
+
+.slide:nth-child(3){
+background-image:url("https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1400&q=85")
+}
+
+.slide-content{
+position:relative;
+z-index:2;
+max-width:560px
+}
+
+.slide h3{
+color:#fff;
+font-size:25px;
+margin:0 0 6px
+}
+
+.slide p{
+color:#e8edf3;
+margin:0;
+font-size:13px;
+line-height:1.5
+}
+
+.slide-location{
+display:inline-block;
+margin-bottom:9px;
+padding:6px 10px;
+border-radius:999px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(8px);
+color:#fff;
+font-size:10px;
+font-weight:800;
+letter-spacing:1px
+}
+
+.dots{
+position:absolute;
+right:16px;
+bottom:17px;
+display:flex;
+gap:6px;
+z-index:5
+}
+
+.dot{
+width:7px;
+height:7px;
+border-radius:50%;
+background:rgba(255,255,255,.5)
+}
+
+.dot.active{
+width:22px;
+background:#fff;
+border-radius:10px
+}
+
+/* SCRATCH */
+
+.scratch-card{
+background:linear-gradient(145deg,#fff,#f7f2e7);
+border:1px solid #ead9ae;
+border-radius:24px;
+padding:22px;
+text-align:center
+}
+
+.scratch-card h2{
+margin:0 0 6px
+}
+
+.scratch-card p{
+color:#687386;
+font-size:13px
+}
+
+.scratch{
+position:relative;
+width:min(100%,330px);
+height:130px;
+margin:auto;
+border-radius:18px;
+overflow:hidden;
+background:#c5c9ce;
+border:2px solid #d2b36a;
+display:flex;
+align-items:center;
+justify-content:center
+}
+
+.scratch-prize{
+font-size:25px;
+font-weight:900;
+color:#152033;
+padding:15px
+}
+
+.scratch canvas{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+touch-action:none;
+cursor:crosshair
+}
+
+.scratch-note{
+font-size:11px!important;
+color:#7c6a3f!important
+}
+
+.lang-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.lang-btn{
+padding:15px;
+border-radius:15px;
+background:#f0f3f8;
+font-weight:800;
+text-align:left
+}
+
+.contact-modal{
+display:grid;
+gap:10px;
+margin-top:15px
+}
+
+.contact-modal a{
+text-decoration:none;
+text-align:center;
+padding:14px;
+border-radius:14px;
+font-weight:800
+}
+
+@media(max-width:560px){
+
+.welcome{
+grid-template-columns:1fr;
+text-align:left;
+margin-top:42px
+}
+
+.avatar{
+width:88px;
+height:88px;
+border-radius:28px;
+font-size:46px;
+position:absolute;
+right:0;
+top:-25px
+}
+
+.hero{min-height:445px}
+
+.quickgrid{
+grid-template-columns:repeat(2,1fr)
+}
+
+.cards{
+grid-template-columns:1fr
+}
+
+.wide{
+grid-column:auto
+}
+
+.call{
+padding:10px 11px;
+width:calc(100% - 18px)
+}
+
+.call small{
+display:none
+}
+
+.call strong{
+font-size:12px
+}
+
+.contact-buttons{
+gap:5px
+}
+
+.contact-btn{
+padding:9px 9px;
+font-size:11px
+}
+
+.slider{
+height:250px
+}
+
+}
 </style>
 </head>
+
 <body>
 
 <header class="hero">
-  <div class="topbar">
-    <div class="brand">DIGITALNI DOMAĆIN</div>
-    <button class="lang" id="langBtn" onclick="openModal('language')">SR ▾</button>
-  </div>
-  <div class="welcome">
-    <div>
-      <div class="premium-badge" data-i18n="badge">✦ PREMIUM DIGITALNI DOMAĆIN</div>
-      <div class="eyebrow" data-i18n="eyebrow">Zlatibor · Demo apartman</div>
-      <h1 data-i18n="welcome_title">Dobro došli u<br>Apartman Aurora.</h1>
-      <p data-i18n="welcome_text">Ja sam vaš digitalni domaćin. Sve što vam je potrebno tokom boravka pronaći ćete ovde — od Wi-Fi mreže do preporuka za Zlatibor.</p>
-    </div>
-    <div class="avatar">🤵🏻</div>
-  </div>
+
+<div class="topbar">
+
+<div class="brand" data-i18n="brand">
+DIGITALNI DOMAĆIN
+</div>
+
+<button class="lang" onclick="openModal('language')" id="languageButton">
+SR ▾
+</button>
+
+</div>
+
+<div class="welcome">
+
+<div>
+
+<div class="premium-badge" data-i18n="premium">
+✦ PREMIUM DIGITALNI DOMAĆIN
+</div>
+
+<div class="eyebrow" data-i18n="eyebrow">
+Zlatibor · Demo apartman
+</div>
+
+<h1 id="heroTitle">
+Dobro došli u<br>Apartman Aurora.
+</h1>
+
+<p id="heroText">
+Ja sam vaš digitalni domaćin. Sve što vam je potrebno tokom boravka pronaći ćete ovde — od Wi-Fi mreže do preporuka za Zlatibor.
+</p>
+
+</div>
+
+<div class="avatar">🤵🏻</div>
+
+</div>
+
 </header>
 
 <main class="container">
-  <section class="quick">
-    <div class="quickgrid">
-      <button onclick="openModal('arrival')"><span class="ico">🧭</span><span data-i18n="btn_arrival">Kako do nas</span></button>
-      <button onclick="openModal('wifi')"><span class="ico">📶</span>Wi-Fi</button>
-      <button onclick="openModal('parking')"><span class="ico">🅿️️</span><span data-i18n="btn_parking">Parking</span></button>
-      <button onclick="openModal('help')"><span class="ico">🆘</span><span data-i18n="btn_help">Pomoć</span></button>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="slider">
-      <div class="slide active"><div><h3 data-i18n="slide1_t">Vaš odmor počinje ovde</h3><p data-i18n="slide1_d">Sve informacije na jednom mestu — brzo, elegantno i jednostavno.</p></div></div>
-      <div class="slide"><div><h3 data-i18n="slide2_t">Uživajte u Zlatiboru</h3><p data-i18n="slide2_d">Otkrijte preporuke domaćina, restorane i aktivnosti.</p></div></div>
-      <div class="slide"><div><h3 data-i18n="slide3_t">Vaš digitalni domaćin</h3><p data-i18n="slide3_d">Tu smo kada vam zatreba — od dolaska do check-outa.</p></div></div>
-      <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-    </div>
-  </section>
+<section class="quick">
 
-  <section class="section">
-    <div class="section-title"><h2 data-i18n="sec1_t">Sve na jednom mestu</h2><span data-i18n="sec1_d">Vaš boravak</span></div>
-    <div class="cards">
-      <div class="card"><button onclick="openModal('arrival')"><div class="icon">🧭</div><h3 data-i18n="c1_t">Kako do apartmana?</h3><p data-i18n="c1_d">Adresa, lokacija, navigacija i uputstvo za dolazak.</p></button></div>
-      <div class="card"><button onclick="openModal('apartment')"><div class="icon">🏠</div><h3 data-i18n="c2_t">Apartman</h3><p data-i18n="c2_d">Grejanje, klima, TV, bojler i uputstva za uređaje.</p></button></div>
-      <div class="card"><button onclick="openModal('rules')"><div class="icon">📋</div><h3 data-i18n="c3_t">Kućni red</h3><p data-i18n="c3_d">Važne informacije i pravila za prijatan boravak.</p></button></div>
-      <div class="card"><button onclick="scrollToSection('map')"><div class="icon">📍</div><h3 data-i18n="c4_t">Okolina</h3><p data-i18n="c4_d">Restorani, prodavnice, apoteke, atrakcije i aktivnosti.</p></button></div>
-      <div class="card"><button onclick="scrollToSection('services')"><div class="icon">🛎️</div><h3 data-i18n="c5_t">Usluge</h3><p data-i18n="c5_d">Doručak, transfer, čišćenje, izleti i još mnogo toga.</p></button></div>
-      <div class="card"><button onclick="openModal('checkout')"><div class="icon">👋</div><h3 data-i18n="c6_t">Check-out</h3><p data-i18n="c6_d">Brza lista stvari koje treba uraditi pre odlaska.</p></button></div>
-    </div>
-  </section>
+<div class="quickgrid">
 
-  <section class="section">
-    <div class="section-title"><h2 data-i18n="sec2_t">Važne informacije</h2></div>
-    <div class="list">
-      <div class="listrow"><div class="big">📶</div><div><h3 data-i18n="i1_t">Wi-Fi je dostupan</h3><p data-i18n="i1_d">AuroraGuest · kliknite za šifru</p></div><button class="action" onclick="openModal('wifi')" data-i18n="btn_open">OTVORI</button></div>
-      <div class="listrow"><div class="big">🌡️</div><div><h3 data-i18n="i2_t">Grejanje</h3><p data-i18n="i2_d">Termostat se nalazi u dnevnoj sobi.</p></div><button class="action" onclick="openModal('heating')" data-i18n="btn_guide">UPUTSTVO</button></div>
-      <div class="listrow"><div class="big">🔑</div><div><h3 data-i18n="i3_t">Check-in</h3><p data-i18n="i3_d">Ulazak u apartman od 14:00.</p></div><button class="action" onclick="openModal('arrival')" data-i18n="btn_details">DETALJI</button></div>
-    </div>
-  </section>
+<button onclick="openModal('arrival')">
+<span class="ico">🧭</span>
+<span data-i18n="quickArrival">Kako do nas</span>
+</button>
 
-  <section class="section" id="map">
-    <div class="section-title"><h2 data-i18n="sec3_t">📍 Istražite Zlatibor</h2><span data-i18n="sec3_d">Preporuke domaćina</span></div>
-    <div class="mapbox">
-      <div class="map-road"></div><div class="map-road r2"></div><div class="map-road r3"></div>
-      <div class="pin main">📍</div><div class="pin shop">🛒</div><div class="pin food">🍽️</div><div class="pin ski">🎿</div>
-      <div class="map-label ml1" data-i18n="m1">Prodavnica</div><div class="map-label ml2" data-i18n="m2">Restoran</div><div class="map-label ml3" data-i18n="m3">Ski centar</div>
-    </div>
-    <div class="list" style="margin-top:10px">
-      <div class="listrow"><div class="big">🍽️</div><div><h3 data-i18n="r1_t">Restoran Zlatiborska Jezera</h3><p data-i18n="r1_d">⭐ Preporuka domaćina · oko 5 min vožnje</p></div><button class="action" onclick="navigate('Restoran Zlatiborska Jezera')" data-i18n="btn_nav">NAVIGACIJA</button></div>
-      <div class="listrow"><div class="big">🛒</div><div><h3 data-i18n="r2_t">Najbliža prodavnica</h3><p data-i18n="r2_d">Osnovne namirnice · oko 3 min</p></div><button class="action" onclick="navigate('Zlatibor centar')" data-i18n="btn_nav">NAVIGACIJA</button></div>
-      <div class="listrow"><div class="big">🏔️</div><div><h3 data-i18n="r3_t">Gold gondola</h3><p data-i18n="r3_d">Jedna od glavnih atrakcija Zlatibora</p></div><button class="action" onclick="navigate('Gold gondola Zlatibor')" data-i18n="btn_nav">NAVIGACIJA</button></div>
-    </div>
-  </section>
+<button onclick="openModal('wifi')">
+<span class="ico">📶</span>
+<span data-i18n="quickWifi">Wi-Fi</span>
+</button>
 
-  <section class="section" id="services">
-    <div class="section-title"><h2 data-i18n="sec4_t">🛎️ Usluge</h2><span data-i18n="sec4_d">Možete zatražiti od domaćina</span></div>
-    <div class="list">
-      <div class="listrow service"><div class="big">🍳</div><div><h3 data-i18n="s1_t">Doručak</h3><p data-i18n="s1_d">Po dogovoru sa domaćinom</p></div><div class="price" data-i18n="price_req">UPIT</div></div>
-      <div class="listrow service"><div class="big">🧹</div><div><h3 data-i18n="s2_t">Dodatno čišćenje</h3><p data-i18n="s2_d">Rezervacija tokom boravka</p></div><div class="price" data-i18n="price_req">UPIT</div></div>
-      <div class="listrow service"><div class="big">🚕</div><div><h3 data-i18n="s3_t">Transfer</h3><p data-i18n="s3_d">Aerodrom / autobuska stanica</p></div><div class="price" data-i18n="price_req">UPIT</div></div>
-      <div class="listrow service"><div class="big">🎿</div><div><h3 data-i18n="s4_t">Ski oprema</h3><p data-i18n="s4_d">Preporučeni lokalni partner</p></div><div class="price" data-i18n="price_req">UPIT</div></div>
-    </div>
-  </section>
+<button onclick="openModal('parking')">
+<span class="ico">🅿️</span>
+<span data-i18n="quickParking">Parking</span>
+</button>
 
-  <section class="section">
-    <div class="section-title"><h2 data-i18n="sec5_t">⭐ Kako vam se dopada boravak?</h2></div>
-    <div class="card wide">
-      <p data-i18n="sec5_d">Vaše mišljenje pomaže domaćinu da unapredi iskustvo budućih gostiju.</p>
-      <div class="rating" id="rating">
-        <button onclick="rate(1)">★</button><button onclick="rate(2)">★</button><button onclick="rate(3)">★</button><button onclick="rate(4)">★</button><button onclick="rate(5)">★</button>
-      </div>
-      <button class="primary gold" onclick="openModal('feedback')" data-i18n="btn_rate">OSTAVI UTISAK</button>
-    </div>
-  </section>
+<button onclick="openModal('help')">
+<span class="ico">🆘</span>
+<span data-i18n="quickHelp">Pomoć</span>
+</button>
 
-  <section class="section"><div class="scratch-card"><div style="font-size:36px">🎁</div><h2 data-i18n="scr_t">GREB-GREB NAGRADA</h2><p data-i18n="scr_d">Hvala što ste naš gost! Prevucite prstom preko polja i otkrijte nagradu.</p><div class="scratch"><div class="scratch-prize" data-i18n="scr_win">🎉 OSVOJILI STE<br><span style="font-size:34px">10% POPUSTA</span><br><small>za sledeću posetu</small></div><canvas id="scratchCanvas"></canvas></div><p class="scratch-note"><span data-i18n="scr_n1">Kod popusta: </span><strong id="discountCode"></strong><br><span data-i18n="scr_n2">Sačuvajte kod za sledeću rezervaciju.</span></p></div></section>
+</div>
 
-  <footer>
-    <span data-i18n="foot1">Digitalni domaćin · Demo verzija · Zlatibor</span><br>
-    <span data-i18n="foot2">Jedan link. Jedan QR kod. Sve informacije za gosta.</span>
-  </footer>
+</section>
+
+
+<!-- ZLATIBOR SLIDER -->
+
+<section class="section">
+
+<div class="slider">
+
+<div class="slide active">
+
+<div class="slide-content">
+
+<div class="slide-location" data-i18n="slideLocation">
+ZLATIBOR
+</div>
+
+<h3 data-i18n="slide1Title">
+Vaš odmor počinje ovde
+</h3>
+
+<p data-i18n="slide1Text">
+Planina, priroda i mir — sve informacije za vaš boravak na jednom mestu.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<div class="slide-content">
+
+<div class="slide-location" data-i18n="slideLocation">
+ZLATIBOR
+</div>
+
+<h3 data-i18n="slide2Title">
+Uživajte u Zlatiboru
+</h3>
+
+<p data-i18n="slide2Text">
+Otkrijte najlepša mesta, restorane, aktivnosti i preporuke domaćina.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<div class="slide-content">
+
+<div class="slide-location" data-i18n="slideLocation">
+ZLATIBOR
+</div>
+
+<h3 data-i18n="slide3Title">
+Vaš digitalni domaćin
+</h3>
+
+<p data-i18n="slide3Text">
+Sve što vam treba tokom boravka — brzo, jednostavno i dostupno sa telefona.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="dots">
+
+<span class="dot active"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+
+<h2 data-i18n="allTitle">
+Sve na jednom mestu
+</h2>
+
+<span data-i18n="stay">
+Vaš boravak
+</span>
+
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+<button onclick="openModal('arrival')">
+
+<div class="icon">🧭</div>
+
+<h3 data-i18n="cardArrivalTitle">
+Kako do apartmana?
+</h3>
+
+<p data-i18n="cardArrivalText">
+Adresa, lokacija, navigacija i uputstvo za dolazak.
+</p>
+
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openModal('apartment')">
+
+<div class="icon">🏠</div>
+
+<h3 data-i18n="cardApartmentTitle">
+Apartman
+</h3>
+
+<p data-i18n="cardApartmentText">
+Grejanje, klima, TV, bojler i uputstva za uređaje.
+</p>
+
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openModal('rules')">
+
+<div class="icon">📋</div>
+
+<h3 data-i18n="cardRulesTitle">
+Kućni red
+</h3>
+
+<p data-i18n="cardRulesText">
+Važne informacije i pravila za prijatan boravak.
+</p>
+
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="scrollToSection('map')">
+
+<div class="icon">📍</div>
+
+<h3 data-i18n="cardAreaTitle">
+Okolina
+</h3>
+
+<p data-i18n="cardAreaText">
+Restorani, prodavnice, apoteke, atrakcije i aktivnosti.
+</p>
+
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="scrollToSection('services')">
+
+<div class="icon">🛎️</div>
+
+<h3 data-i18n="cardServicesTitle">
+Usluge
+</h3>
+
+<p data-i18n="cardServicesText">
+Doručak, transfer, čišćenje, izleti i još mnogo toga.
+</p>
+
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openModal('checkout')">
+
+<div class="icon">👋</div>
+
+<h3 data-i18n="cardCheckoutTitle">
+Check-out
+</h3>
+
+<p data-i18n="cardCheckoutText">
+Brza lista stvari koje treba uraditi pre odlaska.
+</p>
+
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+
+<h2 data-i18n="importantTitle">
+Važne informacije
+</h2>
+
+</div>
+
+
+<div class="list">
+
+<div class="listrow">
+
+<div class="big">📶</div>
+
+<div>
+
+<h3 data-i18n="wifiAvailable">
+Wi-Fi je dostupan
+</h3>
+
+<p data-i18n="wifiAvailableText">
+AuroraGuest · kliknite za šifru
+</p>
+
+</div>
+
+<button class="action" onclick="openModal('wifi')" data-i18n="open">
+OTVORI
+</button>
+
+</div>
+
+
+<div class="listrow">
+
+<div class="big">🌡️</div>
+
+<div>
+
+<h3 data-i18n="heatingTitle">
+Grejanje
+</h3>
+
+<p data-i18n="heatingText">
+Termostat se nalazi u dnevnoj sobi.
+</p>
+
+</div>
+
+<button class="action" onclick="openModal('heating')" data-i18n="instructions">
+UPUTSTVO
+</button>
+
+</div>
+
+
+<div class="listrow">
+
+<div class="big">🔑</div>
+
+<div>
+
+<h3 data-i18n="checkinTitle">
+Check-in
+</h3>
+
+<p data-i18n="checkinText">
+Ulazak u apartman od 14:00.
+</p>
+
+</div>
+
+<button class="action" onclick="openModal('arrival')" data-i18n="details">
+DETALJI
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="map">
+
+<div class="section-title">
+
+<h2 data-i18n="exploreTitle">
+📍 Istražite Zlatibor
+</h2>
+
+<span data-i18n="hostRecommendations">
+Preporuke domaćina
+</span>
+
+</div>
+
+
+<div class="mapbox">
+
+<div class="map-road"></div>
+<div class="map-road r2"></div>
+<div class="map-road r3"></div>
+
+<div class="pin main">📍</div>
+<div class="pin shop">🛒</div>
+<div class="pin food">🍽️</div>
+<div class="pin ski">🎿</div>
+
+<div class="map-label ml1" data-i18n="shop">
+Prodavnica
+</div>
+
+<div class="map-label ml2" data-i18n="restaurant">
+Restoran
+</div>
+
+<div class="map-label ml3" data-i18n="skiCenter">
+Ski centar
+</div>
+
+</div>
+
+
+<div class="list" style="margin-top:10px">
+
+<div class="listrow">
+
+<div class="big">🍽️</div>
+
+<div>
+
+<h3>Restoran Zlatiborska Jezera</h3>
+
+<p data-i18n="restaurantRecommendation">
+⭐ Preporuka domaćina · oko 5 min vožnje
+</p>
+
+</div>
+
+<button class="action"
+onclick="navigate('Restoran Zlatiborska Jezera')"
+data-i18n="navigation">
+NAVIGACIJA
+</button>
+
+</div>
+
+
+<div class="listrow">
+
+<div class="big">🛒</div>
+
+<div>
+
+<h3 data-i18n="nearestShop">
+Najbliža prodavnica
+</h3>
+
+<p data-i18n="nearestShopText">
+Osnovne namirnice · oko 3 min
+</p>
+
+</div>
+
+<button class="action"
+onclick="navigate('Zlatibor centar')"
+data-i18n="navigation">
+NAVIGACIJA
+</button>
+
+</div>
+
+
+<div class="listrow">
+
+<div class="big">🏔️</div>
+
+<div>
+
+<h3>Gold gondola</h3>
+
+<p data-i18n="gondolaText">
+Jedna od glavnih atrakcija Zlatibora
+</p>
+
+</div>
+
+<button class="action"
+onclick="navigate('Gold gondola Zlatibor')"
+data-i18n="navigation">
+NAVIGACIJA
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="services">
+
+<div class="section-title">
+
+<h2 data-i18n="servicesTitle">
+🛎️ Usluge
+</h2>
+
+<span data-i18n="servicesSubtitle">
+Možete zatražiti od domaćina
+</span>
+
+</div>
+
+
+<div class="list">
+
+<div class="listrow service">
+
+<div class="big">🍳</div>
+
+<div>
+
+<h3 data-i18n="breakfast">
+Doručak
+</h3>
+
+<p data-i18n="breakfastText">
+Po dogovoru sa domaćinom
+</p>
+
+</div>
+
+<div class="price" data-i18n="inquiry">
+UPIT
+</div>
+
+</div>
+
+
+<div class="listrow service">
+
+<div class="big">🧹</div>
+
+<div>
+
+<h3 data-i18n="cleaning">
+Dodatno čišćenje
+</h3>
+
+<p data-i18n="cleaningText">
+Rezervacija tokom boravka
+</p>
+
+</div>
+
+<div class="price" data-i18n="inquiry">
+UPIT
+</div>
+
+</div>
+
+
+<div class="listrow service">
+
+<div class="big">🚕</div>
+
+<div>
+
+<h3 data-i18n="transfer">
+Transfer
+</h3>
+
+<p data-i18n="transferText">
+Aerodrom / autobuska stanica
+</p>
+
+</div>
+
+<div class="price" data-i18n="inquiry">
+UPIT
+</div>
+
+</div>
+
+
+<div class="listrow service">
+
+<div class="big">🎿</div>
+
+<div>
+
+<h3 data-i18n="skiEquipment">
+Ski oprema
+</h3>
+
+<p data-i18n="skiEquipmentText">
+Preporučeni lokalni partner
+</p>
+
+</div>
+
+<div class="price" data-i18n="inquiry">
+UPIT
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+
+<h2 data-i18n="ratingTitle">
+⭐ Kako vam se dopada boravak?
+</h2>
+
+</div>
+
+
+<div class="card wide">
+
+<p data-i18n="ratingText">
+Vaše mišljenje pomaže domaćinu da unapredi iskustvo budućih gostiju.
+</p>
+
+<div class="rating" id="rating">
+
+<button onclick="rate(1)">★</button>
+<button onclick="rate(2)">★</button>
+<button onclick="rate(3)">★</button>
+<button onclick="rate(4)">★</button>
+<button onclick="rate(5)">★</button>
+
+</div>
+
+<button class="primary gold"
+onclick="openModal('feedback')"
+data-i18n="leaveReview">
+OSTAVI UTISAK
+</button>
+
+</div>
+
+</section>
+
+
+<!-- GREB GREB -->
+
+<section class="section">
+
+<div class="scratch-card">
+
+<div style="font-size:36px">🎁</div>
+
+<h2 data-i18n="scratchTitle">
+GREB-GREB NAGRADA
+</h2>
+
+<p data-i18n="scratchText">
+Hvala što ste naš gost! Prevucite prstom preko polja i otkrijte nagradu.
+</p>
+
+<div class="scratch">
+
+<div class="scratch-prize">
+
+<span data-i18n="youWon">
+🎉 OSVOJILI STE
+</span>
+
+<br>
+
+<span style="font-size:34px">
+10% POPUSTA
+</span>
+
+<br>
+
+<small data-i18n="nextVisit">
+za sledeću posetu
+</small>
+
+</div>
+
+<canvas id="scratchCanvas"></canvas>
+
+</div>
+
+<p class="scratch-note">
+
+<span data-i18n="discountCodeLabel">
+Kod popusta:
+</span>
+
+<strong id="discountCode"></strong>
+
+<br>
+
+<span data-i18n="saveCode">
+Sačuvajte kod za sledeću rezervaciju.
+</span>
+
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<span data-i18n="footer1">
+Digitalni domaćin · Demo verzija · Zlatibor
+</span>
+
+<br>
+
+<span data-i18n="footer2">
+Jedan link. Jedan QR kod. Sve informacije za gosta.
+</span>
+
+</footer>
+
 </main>
 
-<!-- NOVA KONTAKT SEKCIJA -->
+
+<!-- DONJI KONTAKT -->
+
 <div class="call">
-  <div><small data-i18n="call_h">Treba vam pomoć?</small><br><strong data-i18n="call_t">Kontaktirajte domaćina</strong></div>
-  <div class="call-actions">
-    <a href="tel:+381601234567" class="call-btn btn-phone" title="Poziv">📞</a>
-    <a href="viber://chat?number=%2B381601234567" class="call-btn btn-viber" title="Viber">💜</a>
-    <a href="https://wa.me/381601234567" class="call-btn btn-wa" title="WhatsApp">💬</a>
-  </div>
+
+<div>
+
+<small data-i18n="needHelp">
+Treba vam pomoć?
+</small>
+
+<br>
+
+<strong data-i18n="contactHost">
+Kontaktirajte domaćina
+</strong>
+
 </div>
 
-<div class="modal" id="modal" onclick="closeOnBackdrop(event)">
-  <div class="sheet">
-    <div class="sheethead"><h2 id="modalTitle"></h2><button class="close" onclick="closeModal()">×</button></div>
-    <div id="modalBody" style="margin-top:18px"></div>
-  </div>
+
+<div class="contact-buttons">
+
+<a class="contact-btn whatsapp"
+href="https://wa.me/381601234567"
+target="_blank">
+WhatsApp
+</a>
+
+<a class="contact-btn viber"
+href="viber://chat?number=%2B381601234567">
+Viber
+</a>
+
+<a class="contact-btn phone"
+href="tel:+381601234567">
+☎️
+</a>
+
 </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal"
+id="modal"
+onclick="closeOnBackdrop(event)">
+
+<div class="sheet">
+
+<div class="sheethead">
+
+<h2 id="modalTitle"></h2>
+
+<button class="close"
+onclick="closeModal()">
+×
+</button>
+
+</div>
+
+<div id="modalBody" style="margin-top:18px"></div>
+
+</div>
+
+</div>
+
 
 <script>
-// BAZE PREVODA ZA CEO INTERFEJS
-const UI = {
- sr:{
-  badge:"✦ PREMIUM DIGITALNI DOMAĆIN", eyebrow:"Zlatibor · Demo apartman", welcome_title:"Dobro došli u<br>Apartman Aurora.", welcome_text:"Ja sam vaš digitalni domaćin. Sve što vam je potrebno tokom boravka pronaći ćete ovde — od Wi-Fi mreže do preporuka za Zlatibor.",
-  btn_arrival:"Kako do nas", btn_parking:"Parking", btn_help:"Pomoć",
-  slide1_t:"Vaš odmor počinje ovde", slide1_d:"Sve informacije na jednom mestu — brzo, elegantno i jednostavno.", slide2_t:"Uživajte u Zlatiboru", slide2_d:"Otkrijte preporuke domaćina, restorane i aktivnosti.", slide3_t:"Vaš digitalni domaćin", slide3_d:"Tu smo kada vam zatreba — od dolaska do check-outa.",
-  sec1_t:"Sve na jednom mestu", sec1_d:"Vaš boravak", c1_t:"Kako do apartmana?", c1_d:"Adresa, lokacija, navigacija i uputstvo za dolazak.", c2_t:"Apartman", c2_d:"Grejanje, klima, TV, bojler i uputstva za uređaje.", c3_t:"Kućni red", c3_d:"Važne informacije i pravila za prijatan boravak.", c4_t:"Okolina", c4_d:"Restorani, prodavnice, apoteke, atrakcije i aktivnosti.", c5_t:"Usluge", c5_d:"Doručak, transfer, čišćenje, izleti i još mnogo toga.", c6_t:"Check-out", c6_d:"Brza lista stvari koje treba uraditi pre odlaska.",
-  sec2_t:"Važne informacije", i1_t:"Wi-Fi je dostupan", i1_d:"AuroraGuest · kliknite za šifru", i2_t:"Grejanje", i2_d:"Termostat se nalazi u dnevnoj sobi.", i3_t:"Check-in", i3_d:"Ulazak u apartman od 14:00.", btn_open:"OTVORI", btn_guide:"UPUTSTVO", btn_details:"DETALJI",
-  sec3_t:"📍 Istražite Zlatibor", sec3_d:"Preporuke domaćina", m1:"Prodavnica", m2:"Restoran", m3:"Ski centar", r1_t:"Restoran Zlatiborska Jezera", r1_d:"⭐ Preporuka domaćina · oko 5 min vožnje", r2_t:"Najbliža prodavnica", r2_d:"Osnovne namirnice · oko 3 min", r3_t:"Gold gondola", r3_d:"Jedna od glavnih atrakcija Zlatibora", btn_nav:"NAVIGACIJA",
-  sec4_t:"🛎️ Usluge", sec4_d:"Možete zatražiti od domaćina", s1_t:"Doručak", s1_d:"Po dogovoru sa domaćinom", s2_t:"Dodatno čišćenje", s2_d:"Rezervacija tokom boravka", s3_t:"Transfer", s3_d:"Aerodrom / autobuska stanica", s4_t:"Ski oprema", s4_d:"Preporučeni lokalni partner", price_req:"UPIT",
-  sec5_t:"⭐ Kako vam se dopada boravak?", sec5_d:"Vaše mišljenje pomaže domaćinu da unapredi iskustvo budućih gostiju.", btn_rate:"OSTAVI UTISAK",
-  scr_t:"GREB-GREB NAGRADA", scr_d:"Hvala što ste naš gost! Prevucite prstom preko polja i otkrijte nagradu.", scr_win:"🎉 OSVOJILI STE<br><span style='font-size:34px'>10% POPUSTA</span><br><small>za sledeću posetu</small>", scr_n1:"Kod popusta: ", scr_n2:"Sačuvajte kod za sledeću rezervaciju.",
-  foot1:"Digitalni domaćin · Demo verzija · Zlatibor", foot2:"Jedan link. Jedan QR kod. Sve informacije za gosta.", call_h:"Treba vam pomoć?", call_t:"Kontaktirajte domaćina",
-  scratch_mask: "GREBITE OVDE",
-  modals: {
-   arrival:{title:"🧭 Kako do apartmana?",body:`<p><strong>Apartman Aurora</strong><br>Naselje Obudojevica, Zlatibor</p><p>Check-in je moguć od <strong>14:00</strong>. Ako dolazite ranije, kontaktirajte domaćina.</p><button class="primary" onclick="navigate('Apartman Aurora Zlatibor')">🧭 OTVORI NAVIGACIJU</button><div class="info"><span>🔑</span><div><b>Ulazak</b><small>Ključ se nalazi u dogovorenom sefu za ključeve.</small></div></div>`},
-   wifi:{title:"📶 Wi-Fi",body:`<p>Mreža je dostupna u celom apartmanu.</p><div class="copy"><span><strong>Mreža:</strong> AuroraGuest<br><strong>Šifra:</strong> Zlatibor2026!</span><button onclick="copyText('Zlatibor2026!')">KOPIRAJ ŠIFRU</button></div>`},
-   parking:{title:"🅿️ Parking",body:`<p>Za goste je obezbeđeno jedno parking mesto.</p><div class="info"><span>🚗</span><div><b>Parking mesto P-12</b><small>Ulaz u parking je sa bočne strane objekta.</small></div></div><button class="primary" onclick="navigate('Apartman Aurora Zlatibor')">🧭 NAVIGACIJA</button>`},
-   apartment:{title:"🏠 Apartman",body:`<div class="list"><div class="listrow"><div class="big">🌡️</div><div><h3>Grejanje</h3><p>Termostat je u dnevnoj sobi.</p></div><button class="action" onclick="openModal('heating')">UPUTSTVO</button></div><div class="listrow"><div class="big">❄️</div><div><h3>Klima</h3><p>Daljinski upravljač je na komodi.</p></div></div><div class="listrow"><div class="big">📺</div><div><h3>Smart TV</h3><p>Netflix i YouTube su dostupni.</p></div></div><div class="listrow"><div class="big">🚿</div><div><h3>Bojler</h3><p>Automatski režim. Molimo ne isključujte napajanje.</p></div></div></div>`},
-   heating:{title:"🌡️ Grejanje",body:`<p>Temperatura se podešava na termostatu u dnevnoj sobi.</p><ul><li>Pritisnite <strong>+</strong> ili <strong>−</strong> za promenu temperature.</li><li>Preporučena temperatura je 22–23°C.</li><li>Ako postoji problem, pozovite domaćina.</li></ul>`},
-   rules:{title:"📋 Kućni red",body:`<ul><li>Tišina u objektu: <strong>22:00–08:00</strong>.</li><li>Pušenje u apartmanu nije dozvoljeno.</li><li>Molimo vas da pažljivo koristite inventar.</li><li>Žurke i proslave nisu dozvoljene bez dogovora.</li><li>Otpad odložite na predviđenom mestu.</li></ul>`},
-   checkout:{title:"👋 Check-out",body:`<p>Check-out je do <strong>10:00</strong>.</p><ul><li>Proverite da li ste poneli lične stvari.</li><li>Isključite klimu i zatvorite prozore.</li><li>Ostavite apartman urednim.</li><li>Ključ vratite na dogovoreno mesto.</li></ul><button class="primary gold" onclick="openModal('feedback')">⭐ OCENITE BORAVAK</button>`},
-   help:{title:"🆘 Pomoć",body:`<p>Za sva pitanja ili probleme tokom boravka možete kontaktirati domaćina.</p><a class="primary" style="display:block;text-decoration:none" href="tel:+381601234567">☎️ POZOVI DOMAĆINA</a><div class="info"><span>🚑</span><div><b>Hitne službe</b><small>194 Hitna pomoć · 193 Vatrogasci · 192 Policija</small></div></div>`},
-   feedback:{title:"⭐ Vaš utisak",body:`<p>Hvala što ste boravili kod nas. Vaša ocena nam mnogo znači.</p><div class="rating"><button onclick="rate(1)">★</button><button onclick="rate(2)">★</button><button onclick="rate(3)">★</button><button onclick="rate(4)">★</button><button onclick="rate(5)">★</button></div><button class="primary" onclick="alert('Hvala! U punoj verziji ovde može biti povezan Google review.')">POŠALJI UTISAK</button>`},
-   language:{title:"🌍 Izaberite jezik / Language",body:`<div class="lang-grid"><button class="lang-btn" onclick="setLanguage('sr')">🇷🇸 Srpski</button><button class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button></div>`}
-  }
- },
- en:{
-  badge:"✦ PREMIUM DIGITAL HOST", eyebrow:"Zlatibor · Demo apartment", welcome_title:"Welcome to<br>Apartment Aurora.", welcome_text:"I am your digital host. Everything you need during your stay is right here — from Wi-Fi to local recommendations.",
-  btn_arrival:"Directions", btn_parking:"Parking", btn_help:"Help",
-  slide1_t:"Your vacation starts here", slide1_d:"All information in one place — fast, elegant, and simple.", slide2_t:"Enjoy Zlatibor", slide2_d:"Discover local recommendations, food, and activities.", slide3_t:"Your digital host", slide3_d:"We are here when you need us — from arrival to check-out.",
-  sec1_t:"All in one place", sec1_d:"Your stay", c1_t:"How to get here?", c1_d:"Address, location, and arrival instructions.", c2_t:"Apartment", c2_d:"Heating, AC, TV, and appliance instructions.", c3_t:"House Rules", c3_d:"Important info for a pleasant stay.", c4_t:"Surroundings", c4_d:"Restaurants, shops, pharmacies, and attractions.", c5_t:"Services", c5_d:"Breakfast, transfers, cleaning, and more.", c6_t:"Check-out", c6_d:"Quick list of things to do before leaving.",
-  sec2_t:"Important Info", i1_t:"Wi-Fi is available", i1_d:"AuroraGuest · click for password", i2_t:"Heating", i2_d:"Thermostat is in the living room.", i3_t:"Check-in", i3_d:"Apartment entry from 14:00.", btn_open:"OPEN", btn_guide:"GUIDE", btn_details:"DETAILS",
-  sec3_t:"📍 Explore Zlatibor", sec3_d:"Host recommendations", m1:"Shop", m2:"Restaurant", m3:"Ski Center", r1_t:"Restaurant Zlatiborska Jezera", r1_d:"⭐ Host recommendation · 5 min drive", r2_t:"Nearest Grocery", r2_d:"Basic supplies · approx 3 min", r3_t:"Gold Gondola", r3_d:"Main attraction of Zlatibor", btn_nav:"NAVIGATE",
-  sec4_t:"🛎️ Services", sec4_d:"Available on request", s1_t:"Breakfast", s1_d:"Organized with the host", s2_t:"Extra Cleaning", s2_d:"Book during your stay", s3_t:"Transfer", s3_d:"Airport / Bus station", s4_t:"Ski Equipment", s4_d:"Recommended local partner", price_req:"INQUIRY",
-  sec5_t:"⭐ How is your stay?", sec5_d:"Your feedback helps us improve future experiences.", btn_rate:"LEAVE FEEDBACK",
-  scr_t:"SCRATCH & WIN", scr_d:"Thank you for being our guest! Swipe over the field to reveal a prize.", scr_win:"🎉 YOU WON<br><span style='font-size:34px'>10% OFF</span><br><small>for your next visit</small>", scr_n1:"Discount code: ", scr_n2:"Save this code for your next booking.",
-  foot1:"Digital Host · Demo Version · Zlatibor", foot2:"One link. One QR code. All guest information.", call_h:"Need help?", call_t:"Contact the host",
-  scratch_mask: "SCRATCH HERE",
-  modals: {
-   arrival:{title:"🧭 How to get here",body:`<p><strong>Apartment Aurora</strong><br>Obudojevica, Zlatibor</p><p>Check-in is from <strong>14:00</strong>. Contact the host for early arrivals.</p><button class="primary" onclick="navigate('Apartman Aurora Zlatibor')">🧭 OPEN NAVIGATION</button><div class="info"><span>🔑</span><div><b>Entry</b><small>The key is in the agreed keybox.</small></div></div>`},
-   wifi:{title:"📶 Wi-Fi",body:`<p>Network is available throughout the apartment.</p><div class="copy"><span><strong>Network:</strong> AuroraGuest<br><strong>Pass:</strong> Zlatibor2026!</span><button onclick="copyText('Zlatibor2026!')">COPY PASS</button></div>`},
-   parking:{title:"🅿️ Parking",body:`<p>One parking spot is provided.</p><div class="info"><span>🚗</span><div><b>Spot P-12</b><small>Entrance is on the side of the building.</small></div></div><button class="primary" onclick="navigate('Apartman Aurora Zlatibor')">🧭 NAVIGATION</button>`},
-   apartment:{title:"🏠 Apartment",body:`<div class="list"><div class="listrow"><div class="big">🌡️</div><div><h3>Heating</h3><p>Thermostat is in the living room.</p></div><button class="action" onclick="openModal('heating')">GUIDE</button></div><div class="listrow"><div class="big">❄️</div><div><h3>Air Conditioning</h3><p>Remote is on the drawer.</p></div></div><div class="listrow"><div class="big">📺</div><div><h3>Smart TV</h3><p>Netflix and YouTube available.</p></div></div><div class="listrow"><div class="big">🚿</div><div><h3>Boiler</h3><p>Auto mode. Please do not turn off.</p></div></div></div>`},
-   heating:{title:"🌡️ Heating",body:`<p>Temperature is set on the living room thermostat.</p><ul><li>Press <strong>+</strong> or <strong>−</strong> to change.</li><li>Recommended is 22–23°C.</li><li>Call the host if there is an issue.</li></ul>`},
-   rules:{title:"📋 House Rules",body:`<ul><li>Quiet hours: <strong>22:00–08:00</strong>.</li><li>Smoking is not allowed inside.</li><li>Please treat inventory with care.</li><li>Parties require prior agreement.</li><li>Dispose of waste properly.</li></ul>`},
-   checkout:{title:"👋 Check-out",body:`<p>Check-out is by <strong>10:00</strong>.</p><ul><li>Check for personal belongings.</li><li>Turn off AC and close windows.</li><li>Leave the apartment tidy.</li><li>Return the key to the lockbox.</li></ul><button class="primary gold" onclick="openModal('feedback')">⭐ RATE YOUR STAY</button>`},
-   help:{title:"🆘 Help",body:`<p>Contact the host for any questions or issues.</p><a class="primary" style="display:block;text-decoration:none" href="tel:+381601234567">☎️ CALL HOST</a><div class="info"><span>🚑</span><div><b>Emergency</b><small>194 Ambulance · 193 Fire · 192 Police</small></div></div>`},
-   feedback:{title:"⭐ Your Feedback",body:`<p>Thank you for staying. Your rating means a lot.</p><div class="rating"><button onclick="rate(1)">★</button><button onclick="rate(2)">★</button><button onclick="rate(3)">★</button><button onclick="rate(4)">★</button><button onclick="rate(5)">★</button></div><button class="primary" onclick="alert('Thanks!')">SEND FEEDBACK</button>`},
-   language:{title:"🌍 Language",body:`<div class="lang-grid"><button class="lang-btn" onclick="setLanguage('sr')">🇷🇸 Srpski</button><button class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button></div>`}
-  }
- }
+
+/* =====================================================
+   PREVODI CELOG SAJTA
+===================================================== */
+
+const translations = {
+
+sr:{
+brand:"DIGITALNI DOMAĆIN",
+premium:"✦ PREMIUM DIGITALNI DOMAĆIN",
+eyebrow:"Zlatibor · Demo apartman",
+
+heroTitle:"Dobro došli u<br>Apartman Aurora.",
+heroText:"Ja sam vaš digitalni domaćin. Sve što vam je potrebno tokom boravka pronaći ćete ovde — od Wi-Fi mreže do preporuka za Zlatibor.",
+
+quickArrival:"Kako do nas",
+quickWifi:"Wi-Fi",
+quickParking:"Parking",
+quickHelp:"Pomoć",
+
+slideLocation:"ZLATIBOR",
+slide1Title:"Vaš odmor počinje ovde",
+slide1Text:"Planina, priroda i mir — sve informacije za vaš boravak na jednom mestu.",
+slide2Title:"Uživajte u Zlatiboru",
+slide2Text:"Otkrijte najlepša mesta, restorane, aktivnosti i preporuke domaćina.",
+slide3Title:"Vaš digitalni domaćin",
+slide3Text:"Sve što vam treba tokom boravka — brzo, jednostavno i dostupno sa telefona.",
+
+allTitle:"Sve na jednom mestu",
+stay:"Vaš boravak",
+
+cardArrivalTitle:"Kako do apartmana?",
+cardArrivalText:"Adresa, lokacija, navigacija i uputstvo za dolazak.",
+cardApartmentTitle:"Apartman",
+cardApartmentText:"Grejanje, klima, TV, bojler i uputstva za uređaje.",
+cardRulesTitle:"Kućni red",
+cardRulesText:"Važne informacije i pravila za prijatan boravak.",
+cardAreaTitle:"Okolina",
+cardAreaText:"Restorani, prodavnice, apoteke, atrakcije i aktivnosti.",
+cardServicesTitle:"Usluge",
+cardServicesText:"Doručak, transfer, čišćenje, izleti i još mnogo toga.",
+cardCheckoutTitle:"Check-out",
+cardCheckoutText:"Brza lista stvari koje treba uraditi pre odlaska.",
+
+importantTitle:"Važne informacije",
+wifiAvailable:"Wi-Fi je dostupan",
+wifiAvailableText:"AuroraGuest · kliknite za šifru",
+heatingTitle:"Grejanje",
+heatingText:"Termostat se nalazi u dnevnoj sobi.",
+checkinTitle:"Check-in",
+checkinText:"Ulazak u apartman od 14:00.",
+
+open:"OTVORI",
+instructions:"UPUTSTVO",
+details:"DETALJI",
+
+exploreTitle:"📍 Istražite Zlatibor",
+hostRecommendations:"Preporuke domaćina",
+shop:"Prodavnica",
+restaurant:"Restoran",
+skiCenter:"Ski centar",
+restaurantRecommendation:"⭐ Preporuka domaćina · oko 5 min vožnje",
+navigation:"NAVIGACIJA",
+nearestShop:"Najbliža prodavnica",
+nearestShopText:"Osnovne namirnice · oko 3 min",
+gondolaText:"Jedna od glavnih atrakcija Zlatibora",
+
+servicesTitle:"🛎️ Usluge",
+servicesSubtitle:"Možete zatražiti od domaćina",
+breakfast:"Doručak",
+breakfastText:"Po dogovoru sa domaćinom",
+cleaning:"Dodatno čišćenje",
+cleaningText:"Rezervacija tokom boravka",
+transfer:"Transfer",
+transferText:"Aerodrom / autobuska stanica",
+skiEquipment:"Ski oprema",
+skiEquipmentText:"Preporučeni lokalni partner",
+inquiry:"UPIT",
+
+ratingTitle:"⭐ Kako vam se dopada boravak?",
+ratingText:"Vaše mišljenje pomaže domaćinu da unapredi iskustvo budućih gostiju.",
+leaveReview:"OSTAVI UTISAK",
+
+scratchTitle:"GREB-GREB NAGRADA",
+scratchText:"Hvala što ste naš gost! Prevucite prstom preko polja i otkrijte nagradu.",
+youWon:"🎉 OSVOJILI STE",
+nextVisit:"za sledeću posetu",
+discountCodeLabel:"Kod popusta:",
+saveCode:"Sačuvajte kod za sledeću rezervaciju.",
+
+needHelp:"Treba vam pomoć?",
+contactHost:"Kontaktirajte domaćina",
+
+footer1:"Digitalni domaćin · Demo verzija · Zlatibor",
+footer2:"Jedan link. Jedan QR kod. Sve informacije za gosta."
+},
+
+en:{
+brand:"DIGITAL HOST",
+premium:"✦ PREMIUM DIGITAL HOST",
+eyebrow:"Zlatibor · Demo apartment",
+
+heroTitle:"Welcome to<br>Aurora Apartment.",
+heroText:"I am your digital host. Everything you need during your stay is right here — from Wi-Fi access to recommendations for Zlatibor.",
+
+quickArrival:"Getting here",
+quickWifi:"Wi-Fi",
+quickParking:"Parking",
+quickHelp:"Help",
+
+slideLocation:"ZLATIBOR",
+slide1Title:"Your holiday starts here",
+slide1Text:"Mountains, nature and peace — everything you need for your stay in one place.",
+slide2Title:"Enjoy Zlatibor",
+slide2Text:"Discover beautiful places, restaurants, activities and local host recommendations.",
+slide3Title:"Your digital host",
+slide3Text:"Everything you need during your stay — fast, simple and available from your phone.",
+
+allTitle:"Everything in one place",
+stay:"Your stay",
+
+cardArrivalTitle:"How to get here?",
+cardArrivalText:"Address, location, navigation and arrival instructions.",
+cardApartmentTitle:"Apartment",
+cardApartmentText:"Heating, air conditioning, TV, boiler and appliance instructions.",
+cardRulesTitle:"House rules",
+cardRulesText:"Important information and rules for a pleasant stay.",
+cardAreaTitle:"Nearby",
+cardAreaText:"Restaurants, shops, pharmacies, attractions and activities.",
+cardServicesTitle:"Services",
+cardServicesText:"Breakfast, transfers, cleaning, excursions and more.",
+cardCheckoutTitle:"Check-out",
+cardCheckoutText:"A quick list of things to do before leaving.",
+
+importantTitle:"Important information",
+wifiAvailable:"Wi-Fi available",
+wifiAvailableText:"AuroraGuest · click for password",
+heatingTitle:"Heating",
+heatingText:"The thermostat is located in the living room.",
+checkinTitle:"Check-in",
+checkinText:"Check-in from 2:00 PM.",
+
+open:"OPEN",
+instructions:"INSTRUCTIONS",
+details:"DETAILS",
+
+exploreTitle:"📍 Explore Zlatibor",
+hostRecommendations:"Host recommendations",
+shop:"Shop",
+restaurant:"Restaurant",
+skiCenter:"Ski center",
+restaurantRecommendation:"⭐ Host recommendation · about 5 min drive",
+navigation:"NAVIGATE",
+nearestShop:"Nearest shop",
+nearestShopText:"Basic groceries · about 3 min",
+gondolaText:"One of Zlatibor's main attractions",
+
+servicesTitle:"🛎️ Services",
+servicesSubtitle:"Available on request",
+breakfast:"Breakfast",
+breakfastText:"Available by arrangement with the host",
+cleaning:"Additional cleaning",
+cleaningText:"Book during your stay",
+transfer:"Transfer",
+transferText:"Airport / bus station",
+skiEquipment:"Ski equipment",
+skiEquipmentText:"Recommended local partner",
+inquiry:"INQUIRY",
+
+ratingTitle:"⭐ How are you enjoying your stay?",
+ratingText:"Your feedback helps the host improve the experience for future guests.",
+leaveReview:"LEAVE FEEDBACK",
+
+scratchTitle:"SCRATCH & WIN",
+scratchText:"Thank you for being our guest! Scratch the card to reveal your reward.",
+youWon:"🎉 YOU WON",
+nextVisit:"for your next visit",
+discountCodeLabel:"Discount code:",
+saveCode:"Save the code for your next reservation.",
+
+needHelp:"Need help?",
+contactHost:"Contact your host",
+
+footer1:"Digital Host · Demo version · Zlatibor",
+footer2:"One link. One QR code. All guest information."
+},
+
+de:{
+brand:"DIGITALER GASTGEBER",
+premium:"✦ PREMIUM DIGITALER GASTGEBER",
+eyebrow:"Zlatibor · Demo-Apartment",
+
+heroTitle:"Willkommen im<br>Aurora Apartment.",
+heroText:"Ich bin Ihr digitaler Gastgeber. Alles, was Sie während Ihres Aufenthalts benötigen, finden Sie hier — vom WLAN bis zu Empfehlungen für Zlatibor.",
+
+quickArrival:"Anreise",
+quickWifi:"WLAN",
+quickParking:"Parkplatz",
+quickHelp:"Hilfe",
+
+slideLocation:"ZLATIBOR",
+slide1Title:"Ihr Urlaub beginnt hier",
+slide1Text:"Berge, Natur und Ruhe — alles für Ihren Aufenthalt an einem Ort.",
+slide2Title:"Genießen Sie Zlatibor",
+slide2Text:"Entdecken Sie schöne Orte, Restaurants, Aktivitäten und Empfehlungen des Gastgebers.",
+slide3Title:"Ihr digitaler Gastgeber",
+slide3Text:"Alles, was Sie während Ihres Aufenthalts brauchen — schnell, einfach und direkt auf Ihrem Smartphone.",
+
+allTitle:"Alles an einem Ort",
+stay:"Ihr Aufenthalt",
+
+cardArrivalTitle:"Wie kommen Sie zum Apartment?",
+cardArrivalText:"Adresse, Standort, Navigation und Anreiseinformationen.",
+cardApartmentTitle:"Apartment",
+cardApartmentText:"Heizung, Klimaanlage, TV, Boiler und Geräteanleitungen.",
+cardRulesTitle:"Hausordnung",
+cardRulesText:"Wichtige Informationen und Regeln für einen angenehmen Aufenthalt.",
+cardAreaTitle:"Umgebung",
+cardAreaText:"Restaurants, Geschäfte, Apotheken, Sehenswürdigkeiten und Aktivitäten.",
+cardServicesTitle:"Dienstleistungen",
+cardServicesText:"Frühstück, Transfer, Reinigung, Ausflüge und mehr.",
+cardCheckoutTitle:"Check-out",
+cardCheckoutText:"Kurze Liste der Dinge vor Ihrer Abreise.",
+
+importantTitle:"Wichtige Informationen",
+wifiAvailable:"WLAN verfügbar",
+wifiAvailableText:"AuroraGuest · Passwort anzeigen",
+heatingTitle:"Heizung",
+heatingText:"Das Thermostat befindet sich im Wohnzimmer.",
+checkinTitle:"Check-in",
+checkinText:"Check-in ab 14:00 Uhr.",
+
+open:"ÖFFNEN",
+instructions:"ANLEITUNG",
+details:"DETAILS",
+
+exploreTitle:"📍 Zlatibor entdecken",
+hostRecommendations:"Empfehlungen des Gastgebers",
+shop:"Geschäft",
+restaurant:"Restaurant",
+skiCenter:"Skizentrum",
+restaurantRecommendation:"⭐ Empfehlung des Gastgebers · ca. 5 Min. Fahrt",
+navigation:"NAVIGATION",
+nearestShop:"Nächstes Geschäft",
+nearestShopText:"Grundlegende Lebensmittel · ca. 3 Min.",
+gondolaText:"Eine der wichtigsten Attraktionen von Zlatibor",
+
+servicesTitle:"🛎️ Dienstleistungen",
+servicesSubtitle:"Auf Anfrage beim Gastgeber",
+breakfast:"Frühstück",
+breakfastText:"Nach Vereinbarung mit dem Gastgeber",
+cleaning:"Zusätzliche Reinigung",
+cleaningText:"Während des Aufenthalts buchbar",
+transfer:"Transfer",
+transferText:"Flughafen / Busbahnhof",
+skiEquipment:"Skiausrüstung",
+skiEquipmentText:"Empfohlener lokaler Partner",
+inquiry:"ANFRAGE",
+
+ratingTitle:"⭐ Wie gefällt Ihnen Ihr Aufenthalt?",
+ratingText:"Ihr Feedback hilft dem Gastgeber, das Erlebnis für zukünftige Gäste zu verbessern.",
+leaveReview:"FEEDBACK GEBEN",
+
+scratchTitle:"RUBBELGEWINN",
+scratchText:"Vielen Dank, dass Sie unser Gast sind! Rubbeln Sie das Feld frei und entdecken Sie Ihre Belohnung.",
+youWon:"🎉 SIE HABEN GEWONNEN",
+nextVisit:"für Ihren nächsten Besuch",
+discountCodeLabel:"Rabattcode:",
+saveCode:"Bewahren Sie den Code für Ihre nächste Reservierung auf.",
+
+needHelp:"Brauchen Sie Hilfe?",
+contactHost:"Gastgeber kontaktieren",
+
+footer1:"Digitaler Gastgeber · Demo-Version · Zlatibor",
+footer2:"Ein Link. Ein QR-Code. Alle Informationen für Gäste."
+},
+
+ru:{
+brand:"ЦИФРОВОЙ ХОЗЯИН",
+premium:"✦ ПРЕМИУМ ЦИФРОВОЙ ХОЗЯИН",
+eyebrow:"Златибор · Демо-апартаменты",
+
+heroTitle:"Добро пожаловать в<br>апартаменты Aurora.",
+heroText:"Я ваш цифровой хозяин. Всё необходимое во время проживания находится здесь — от Wi-Fi до рекомендаций по Златибору.",
+
+quickArrival:"Как добраться",
+quickWifi:"Wi-Fi",
+quickParking:"Парковка",
+quickHelp:"Помощь",
+
+slideLocation:"ЗЛАТИБОР",
+slide1Title:"Ваш отдых начинается здесь",
+slide1Text:"Горы, природа и спокойствие — всё необходимое для вашего отдыха в одном месте.",
+slide2Title:"Наслаждайтесь Златибором",
+slide2Text:"Откройте для себя красивые места, рестораны, развлечения и рекомендации хозяина.",
+slide3Title:"Ваш цифровой хозяин",
+slide3Text:"Всё необходимое во время проживания — быстро, просто и прямо на вашем телефоне.",
+
+allTitle:"Всё в одном месте",
+stay:"Ваше пребывание",
+
+cardArrivalTitle:"Как добраться до апартаментов?",
+cardArrivalText:"Адрес, расположение, навигация и инструкции по приезду.",
+cardApartmentTitle:"Апартаменты",
+cardApartmentText:"Отопление, кондиционер, телевизор, бойлер и инструкции.",
+cardRulesTitle:"Правила проживания",
+cardRulesText:"Важная информация и правила для комфортного проживания.",
+cardAreaTitle:"Окрестности",
+cardAreaText:"Рестораны, магазины, аптеки, достопримечательности и развлечения.",
+cardServicesTitle:"Услуги",
+cardServicesText:"Завтрак, трансфер, уборка, экскурсии и многое другое.",
+cardCheckoutTitle:"Выезд",
+cardCheckoutText:"Краткий список действий перед отъездом.",
+
+importantTitle:"Важная информация",
+wifiAvailable:"Доступен Wi-Fi",
+wifiAvailableText:"AuroraGuest · нажмите для пароля",
+heatingTitle:"Отопление",
+heatingText:"Термостат находится в гостиной.",
+checkinTitle:"Заезд",
+checkinText:"Заезд возможен с 14:00.",
+
+open:"ОТКРЫТЬ",
+instructions:"ИНСТРУКЦИЯ",
+details:"ПОДРОБНЕЕ",
+
+exploreTitle:"📍 Исследуйте Златибор",
+hostRecommendations:"Рекомендации хозяина",
+shop:"Магазин",
+restaurant:"Ресторан",
+skiCenter:"Лыжный центр",
+restaurantRecommendation:"⭐ Рекомендация хозяина · около 5 мин на машине",
+navigation:"НАВИГАЦИЯ",
+nearestShop:"Ближайший магазин",
+nearestShopText:"Основные продукты · около 3 мин.",
+gondolaText:"Одна из главных достопримечательностей Златибора",
+
+servicesTitle:"🛎️ Услуги",
+servicesSubtitle:"Можно заказать у хозяина",
+breakfast:"Завтрак",
+breakfastText:"По договорённости с хозяином",
+cleaning:"Дополнительная уборка",
+cleaningText:"Можно заказать во время проживания",
+transfer:"Трансфер",
+transferText:"Аэропорт / автовокзал",
+skiEquipment:"Лыжное оборудование",
+skiEquipmentText:"Рекомендуемый местный партнёр",
+inquiry:"ЗАПРОС",
+
+ratingTitle:"⭐ Как вам нравится отдых?",
+ratingText:"Ваше мнение помогает хозяину улучшать впечатления будущих гостей.",
+leaveReview:"ОСТАВИТЬ ОТЗЫВ",
+
+scratchTitle:"СКРЭТЧ-НАГРАДА",
+scratchText:"Спасибо, что вы наш гость! Сотрите защитный слой и узнайте свою награду.",
+youWon:"🎉 ВЫ ВЫИГРАЛИ",
+nextVisit:"для следующего посещения",
+discountCodeLabel:"Код скидки:",
+saveCode:"Сохраните код для следующего бронирования.",
+
+needHelp:"Нужна помощь?",
+contactHost:"Связаться с хозяином",
+
+footer1:"Цифровой хозяин · Демо-версия · Златибор",
+footer2:"Одна ссылка. Один QR-код. Вся информация для гостя."
+},
+
+zh:{
+brand:"数字管家",
+premium:"✦ 高级数字管家",
+eyebrow:"兹拉蒂博尔 · 公寓演示",
+
+heroTitle:"欢迎来到<br>Aurora公寓。",
+heroText:"我是您的数字管家。入住期间所需的一切信息都在这里——从Wi-Fi到兹拉蒂博尔旅游推荐。",
+
+quickArrival:"如何到达",
+quickWifi:"Wi-Fi",
+quickParking:"停车",
+quickHelp:"帮助",
+
+slideLocation:"兹拉蒂博尔",
+slide1Title:"您的假期从这里开始",
+slide1Text:"山景、自然与宁静——入住所需的信息尽在一处。",
+slide2Title:"探索兹拉蒂博尔",
+slide2Text:"发现美丽景点、餐厅、活动以及房东推荐。",
+slide3Title:"您的数字管家",
+slide3Text:"入住期间所需的一切——快速、简单，手机即可使用。",
+
+allTitle:"所有信息尽在一处",
+stay:"您的住宿",
+
+cardArrivalTitle:"如何到达公寓？",
+cardArrivalText:"地址、位置、导航以及到达说明。",
+cardApartmentTitle:"公寓",
+cardApartmentText:"暖气、空调、电视、热水器及设备使用说明。",
+cardRulesTitle:"住宿规则",
+cardRulesText:"舒适入住所需的重要信息和规则。",
+cardAreaTitle:"周边",
+cardAreaText:"餐厅、商店、药店、景点和活动。",
+cardServicesTitle:"服务",
+cardServicesText:"早餐、接送、清洁、短途旅行等。",
+cardCheckoutTitle:"退房",
+cardCheckoutText:"离开前需要完成的简单事项。",
+
+importantTitle:"重要信息",
+wifiAvailable:"Wi-Fi可用",
+wifiAvailableText:"AuroraGuest · 点击查看密码",
+heatingTitle:"暖气",
+heatingText:"温控器位于客厅。",
+checkinTitle:"入住",
+checkinText:"入住时间为14:00以后。",
+
+open:"打开",
+instructions:"使用说明",
+details:"详情",
+
+exploreTitle:"📍 探索兹拉蒂博尔",
+hostRecommendations:"房东推荐",
+shop:"商店",
+restaurant:"餐厅",
+skiCenter:"滑雪中心",
+restaurantRecommendation:"⭐ 房东推荐 · 驾车约5分钟",
+navigation:"导航",
+nearestShop:"最近的商店",
+nearestShopText:"基本生活用品 · 约3分钟",
+gondolaText:"兹拉蒂博尔主要景点之一",
+
+servicesTitle:"🛎️ 服务",
+servicesSubtitle:"可向房东申请",
+breakfast:"早餐",
+breakfastText:"可与房东协商",
+cleaning:"额外清洁",
+cleaningText:"入住期间可以预订",
+transfer:"接送服务",
+transferText:"机场 / 巴士站",
+skiEquipment:"滑雪设备",
+skiEquipmentText:"推荐的当地合作伙伴",
+inquiry:"咨询",
+
+ratingTitle:"⭐ 您喜欢这次住宿吗？",
+ratingText:"您的反馈可以帮助房东为未来的客人改善体验。",
+leaveReview:"留下评价",
+
+scratchTitle:"刮刮乐奖励",
+scratchText:"感谢您成为我们的客人！刮开卡片，看看您的奖励。",
+youWon:"🎉 恭喜您获得",
+nextVisit:"下次入住使用",
+discountCodeLabel:"优惠码：",
+saveCode:"请保存此代码，以便下次预订时使用。",
+
+needHelp:"需要帮助吗？",
+contactHost:"联系房东",
+
+footer1:"数字管家 · 演示版本 · 兹拉蒂博尔",
+footer2:"一个链接。一个二维码。所有客人信息。"
+}
+
 };
 
-let currentLang = 'sr';
 
-function setLanguage(lang) {
-  if(!UI[lang]) return;
-  currentLang = lang;
-  document.getElementById('langBtn').textContent = lang.toUpperCase() + ' ▾';
-  
-  // Menja sav tekst na stranici
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if(UI[lang][key]) el.innerHTML = UI[lang][key];
-  });
-  
-  closeModal();
-  initScratch(); // Ponovo inicijalizuj grebalicu zbog teksta
+/* =====================================================
+   MODAL SADRŽAJI
+===================================================== */
+
+const modalTranslations = {
+
+sr:{
+arrival:{
+title:"🧭 Kako do apartmana?",
+body:`
+<p><strong>Apartman Aurora</strong><br>Naselje Obudojevica, Zlatibor</p>
+<p>Check-in je moguć od <strong>14:00</strong>. Ako dolazite ranije, kontaktirajte domaćina.</p>
+<button class="primary" onclick="navigate('Apartman Aurora Zlatibor')">🧭 OTVORI NAVIGACIJU</button>
+<div class="info"><span>🔑</span><div><b>Ulazak</b><small>Ključ se nalazi u dogovorenom sefu za ključeve.</small></div></div>
+`
+},
+wifi:{
+title:"📶 Wi-Fi",
+body:`
+<p>Mreža je dostupna u celom apartmanu.</p>
+<div class="copy"><span><strong>Mreža:</strong> AuroraGuest<br><strong>Šifra:</strong> Zlatibor2026!</span><button onclick="copyText('Zlatibor2026!')">KOPIRAJ ŠIFRU</button></div>
+`
+},
+parking:{
+title:"🅿️ Parking",
+body:`
+<p>Za goste je obezbeđeno jedno parking mesto.</p>
+<div class="info"><span>🚗</span><div><b>Parking mesto P-12</b><small>Ulaz u parking je sa bočne strane objekta.</small></div></div>
+<button class="primary" onclick="navigate('Apartman Aurora Zlatibor')">🧭 NAVIGACIJA</button>
+`
+},
+apartment:{
+title:"🏠 Apartman",
+body:`
+<div class="list">
+<div class="listrow"><div class="big">🌡️</div><div><h3>Grejanje</h3><p>Termostat je u dnevnoj sobi.</p></div><button class="action" onclick="openModal('heating')">UPUTSTVO</button></div>
+<div class="listrow"><div class="big">❄️</div><div><h3>Klima</h3><p>Daljinski upravljač je na komodi.</p></div></div>
+<div class="listrow"><div class="big">📺</div><div><h3>Smart TV</h3><p>Netflix i YouTube su dostupni.</p></div></div>
+<div class="listrow"><div class="big">🚿</div><div><h3>Bojler</h3><p>Automatski režim. Molimo ne isključujte napajanje.</p></div></div>
+</div>
+`
+},
+heating:{
+title:"🌡️ Grejanje",
+body:`
+<p>Temperatura se podešava na termostatu u dnevnoj sobi.</p>
+<ul>
+<li>Pritisnite <strong>+</strong> ili <strong>−</strong> za promenu temperature.</li>
+<li>Preporučena temperatura je 22–23°C.</li>
+<li>Ako postoji problem, pozovite domaćina.</li>
+</ul>
+`
+},
+rules:{
+title:"📋 Kućni red",
+body:`
+<ul>
+<li>Tišina u objektu: <strong>22:00–08:00</strong>.</li>
+<li>Pušenje u apartmanu nije dozvoljeno.</li>
+<li>Molimo vas da pažljivo koristite inventar.</li>
+<li>Žurke i proslave nisu dozvoljene bez prethodnog dogovora.</li>
+<li>Otpad odložite na predviđenom mestu.</li>
+</ul>
+`
+},
+checkout:{
+title:"👋 Check-out",
+body:`
+<p>Check-out je do <strong>10:00</strong>.</p>
+<ul>
+<li>Proverite da li ste poneli lične stvari.</li>
+<li>Isključite klimu i zatvorite prozore.</li>
+<li>Ostavite apartman urednim.</li>
+<li>Ključ vratite na dogovoreno mesto.</li>
+</ul>
+<button class="primary gold" onclick="openModal('feedback')">⭐ OCENITE BORAVAK</button>
+`
+},
+help:{
+title:"🆘 Pomoć",
+body:`
+<p>Za sva pitanja ili probleme tokom boravka možete kontaktirati domaćina.</p>
+<div class="contact-modal">
+<a class="whatsapp" href="https://wa.me/381601234567" target="_blank">WhatsApp</a>
+<a class="viber" href="viber://chat?number=%2B381601234567">Viber</a>
+<a class="primary" href="tel:+381601234567">☎️ POZOVI DOMAĆINA</a>
+</div>
+<div class="info"><span>🚑</span><div><b>Hitne službe</b><small>194 Hitna pomoć · 193 Vatrogasci · 192 Policija</small></div></div>
+`
+},
+feedback:{
+title:"⭐ Vaš utisak",
+body:`
+<p>Hvala što ste boravili kod nas. Vaša ocena nam mnogo znači.</p>
+<div class="rating">
+<button onclick="rate(1)">★</button>
+<button onclick="rate(2)">★</button>
+<button onclick="rate(3)">★</button>
+<button onclick="rate(4)">★</button>
+<button onclick="rate(5)">★</button>
+</div>
+<button class="primary" onclick="alert('Hvala! U punoj verziji ovde može biti povezan Google review, forma ili WhatsApp.')">POŠALJI UTISAK</button>
+`
+},
+language:{
+title:"🌍 Izaberite jezik",
+body:`
+<div class="lang-grid">
+<button class="lang-btn" onclick="setLanguage('sr')">🇷🇸 Srpski</button>
+<button class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
+<button class="lang-btn" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+<button class="lang-btn" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+<button class="lang-btn" onclick="setLanguage('zh')">🇨🇳 中文</button>
+</div>
+`
+}
 }
 
-function openModal(key){
-  const modalData = UI[currentLang].modals[key];
-  document.getElementById('modalTitle').innerHTML = modalData.title;
-  document.getElementById('modalBody').innerHTML = modalData.body;
-  document.getElementById('modal').classList.add('show');
-  document.body.style.overflow='hidden';
+};
+
+
+/* =====================================================
+   DOPUNA MODAL PREVODA ZA OSTALA 4 JEZIKA
+===================================================== */
+
+const modalCommon = {
+en:{
+arrival:["🧭 How to get to the apartment?","<p><strong>Aurora Apartment</strong><br>Obudojevica, Zlatibor</p><p>Check-in is available from <strong>2:00 PM</strong>.</p><button class='primary' onclick=\"navigate('Apartman Aurora Zlatibor')\">🧭 OPEN NAVIGATION</button><div class='info'><span>🔑</span><div><b>Entry</b><small>The key is located in the agreed key safe.</small></div></div>"],
+wifi:["📶 Wi-Fi","<p>Wi-Fi is available throughout the apartment.</p><div class='copy'><span><strong>Network:</strong> AuroraGuest<br><strong>Password:</strong> Zlatibor2026!</span><button onclick=\"copyText('Zlatibor2026!')\">COPY PASSWORD</button></div>"],
+parking:["🅿️ Parking","<p>One parking space is available for guests.</p><div class='info'><span>🚗</span><div><b>Parking space P-12</b><small>The parking entrance is on the side of the building.</small></div></div><button class='primary' onclick=\"navigate('Apartman Aurora Zlatibor')\">🧭 NAVIGATION</button>"],
+heating:["🌡️ Heating","<p>The temperature is adjusted using the thermostat in the living room.</p><ul><li>Press <strong>+</strong> or <strong>−</strong> to adjust the temperature.</li><li>Recommended temperature: 22–23°C.</li><li>If there is a problem, contact the host.</li></ul>"],
+rules:["📋 House rules","<ul><li>Quiet hours: <strong>10:00 PM–8:00 AM</strong>.</li><li>Smoking is not allowed inside.</li><li>Please use the apartment inventory carefully.</li><li>Parties are not allowed without prior agreement.</li><li>Please dispose of waste in the designated area.</li></ul>"],
+checkout:["👋 Check-out","<p>Check-out is by <strong>10:00 AM</strong>.</p><ul><li>Check that you have all personal belongings.</li><li>Turn off the air conditioning and close the windows.</li><li>Leave the apartment tidy.</li><li>Return the key to the agreed location.</li></ul>"],
+help:["🆘 Help","<p>For any questions or problems during your stay, contact the host.</p><div class='contact-modal'><a class='whatsapp' href='https://wa.me/381601234567' target='_blank'>WhatsApp</a><a class='viber' href='viber://chat?number=%2B381601234567'>Viber</a><a class='primary' href='tel:+381601234567'>☎️ CALL HOST</a></div><div class='info'><span>🚑</span><div><b>Emergency services</b><small>194 Ambulance · 193 Fire · 192 Police</small></div></div>"],
+feedback:["⭐ Your feedback","<p>Thank you for staying with us. Your rating means a lot to us.</p><div class='rating'><button onclick='rate(1)'>★</button><button onclick='rate(2)'>★</button><button onclick='rate(3)'>★</button><button onclick='rate(4)'>★</button><button onclick='rate(5)'>★</button></div><button class='primary'>SEND FEEDBACK</button>"],
+apartment:["🏠 Apartment","<div class='list'><div class='listrow'><div class='big'>🌡️</div><div><h3>Heating</h3><p>Thermostat in the living room.</p></div></div><div class='listrow'><div class='big'>❄️</div><div><h3>Air conditioning</h3><p>Remote control is on the cabinet.</p></div></div><div class='listrow'><div class='big'>📺</div><div><h3>Smart TV</h3><p>Netflix and YouTube are available.</p></div></div><div class='listrow'><div class='big'>🚿</div><div><h3>Boiler</h3><p>Automatic mode.</p></div></div></div>"]
+},
+
+de:{
+arrival:["🧭 Wie kommen Sie zum Apartment?","<p><strong>Aurora Apartment</strong><br>Obudojevica, Zlatibor</p><p>Check-in ist ab <strong>14:00 Uhr</strong> möglich.</p><button class='primary' onclick=\"navigate('Apartman Aurora Zlatibor')\">🧭 NAVIGATION ÖFFNEN</button>"],
+wifi:["📶 WLAN","<p>WLAN ist im gesamten Apartment verfügbar.</p><div class='copy'><span><strong>Netzwerk:</strong> AuroraGuest<br><strong>Passwort:</strong> Zlatibor2026!</span><button onclick=\"copyText('Zlatibor2026!')\">PASSWORT KOPIEREN</button></div>"],
+parking:["🅿️ Parkplatz","<p>Für Gäste steht ein Parkplatz zur Verfügung.</p><div class='info'><span>🚗</span><div><b>Parkplatz P-12</b><small>Die Zufahrt befindet sich seitlich am Gebäude.</small></div></div>"],
+heating:["🌡️ Heizung","<p>Die Temperatur wird über das Thermostat im Wohnzimmer eingestellt.</p><ul><li>Drücken Sie <strong>+</strong> oder <strong>−</strong>.</li><li>Empfohlene Temperatur: 22–23°C.</li><li>Bei Problemen kontaktieren Sie den Gastgeber.</li></ul>"],
+rules:["📋 Hausordnung","<ul><li>Ruhezeit: <strong>22:00–08:00 Uhr</strong>.</li><li>Rauchen ist im Apartment nicht erlaubt.</li><li>Bitte gehen Sie sorgfältig mit dem Inventar um.</li><li>Partys sind ohne vorherige Vereinbarung nicht erlaubt.</li></ul>"],
+checkout:["👋 Check-out","<p>Check-out bis <strong>10:00 Uhr</strong>.</p><ul><li>Persönliche Gegenstände überprüfen.</li><li>Klimaanlage ausschalten und Fenster schließen.</li><li>Apartment ordentlich hinterlassen.</li><li>Schlüssel zurücklegen.</li></ul>"],
+help:["🆘 Hilfe","<p>Bei Fragen oder Problemen kontaktieren Sie den Gastgeber.</p><div class='contact-modal'><a class='whatsapp' href='https://wa.me/381601234567' target='_blank'>WhatsApp</a><a class='viber' href='viber://chat?number=%2B381601234567'>Viber</a><a class='primary' href='tel:+381601234567'>☎️ GASTGEBER ANRUFEN</a></div>"],
+feedback:["⭐ Ihr Feedback","<p>Vielen Dank für Ihren Aufenthalt. Ihre Bewertung ist uns wichtig.</p><div class='rating'><button onclick='rate(1)'>★</button><button onclick='rate(2)'>★</button><button onclick='rate(3)'>★</button><button onclick='rate(4)'>★</button><button onclick='rate(5)'>★</button></div>"],
+apartment:["🏠 Apartment","<div class='list'><div class='listrow'><div class='big'>🌡️</div><div><h3>Heizung</h3><p>Thermostat im Wohnzimmer.</p></div></div><div class='listrow'><div class='big'>❄️</div><div><h3>Klimaanlage</h3><p>Fernbedienung auf der Kommode.</p></div></div><div class='listrow'><div class='big'>📺</div><div><h3>Smart TV</h3><p>Netflix und YouTube verfügbar.</p></div></div></div>"]
+},
+
+ru:{
+arrival:["🧭 Как добраться до апартаментов?","<p><strong>Aurora</strong><br>Обудоевица, Златибор</p><p>Заезд возможен с <strong>14:00</strong>.</p><button class='primary' onclick=\"navigate('Apartman Aurora Zlatibor')\">🧭 ОТКРЫТЬ НАВИГАЦИЮ</button>"],
+wifi:["📶 Wi-Fi","<p>Wi-Fi доступен во всех апартаментах.</p><div class='copy'><span><strong>Сеть:</strong> AuroraGuest<br><strong>Пароль:</strong> Zlatibor2026!</span><button onclick=\"copyText('Zlatibor2026!')\">КОПИРОВАТЬ</button></div>"],
+parking:["🅿️ Парковка","<p>Для гостей предусмотрено одно парковочное место.</p>"],
+heating:["🌡️ Отопление","<p>Температура регулируется термостатом в гостиной.</p><ul><li>Используйте <strong>+</strong> и <strong>−</strong>.</li><li>Рекомендуемая температура: 22–23°C.</li><li>При проблемах свяжитесь с хозяином.</li></ul>"],
+rules:["📋 Правила проживания","<ul><li>Тишина: <strong>22:00–08:00</strong>.</li><li>Курение в апартаментах запрещено.</li><li>Пожалуйста, бережно относитесь к имуществу.</li><li>Вечеринки без предварительного согласования запрещены.</li></ul>"],
+checkout:["👋 Выезд","<p>Выезд до <strong>10:00</strong>.</p><ul><li>Проверьте личные вещи.</li><li>Выключите кондиционер и закройте окна.</li><li>Оставьте апартаменты в порядке.</li><li>Верните ключ на согласованное место.</li></ul>"],
+help:["🆘 Помощь","<p>По всем вопросам во время проживания свяжитесь с хозяином.</p><div class='contact-modal'><a class='whatsapp' href='https://wa.me/381601234567' target='_blank'>WhatsApp</a><a class='viber' href='viber://chat?number=%2B381601234567'>Viber</a><a class='primary' href='tel:+381601234567'>☎️ ПОЗВОНИТЬ ХОЗЯИНУ</a></div>"],
+feedback:["⭐ Ваш отзыв","<p>Спасибо за проживание у нас. Ваша оценка очень важна.</p><div class='rating'><button onclick='rate(1)'>★</button><button onclick='rate(2)'>★</button><button onclick='rate(3)'>★</button><button onclick='rate(4)'>★</button><button onclick='rate(5)'>★</button></div>"],
+apartment:["🏠 Апартаменты","<div class='list'><div class='listrow'><div class='big'>🌡️</div><div><h3>Отопление</h3><p>Термостат находится в гостиной.</p></div></div><div class='listrow'><div class='big'>❄️</div><div><h3>Кондиционер</h3><p>Пульт находится на комоде.</p></div></div><div class='listrow'><div class='big'>📺</div><div><h3>Smart TV</h3><p>Доступны Netflix и YouTube.</p></div></div></div>"]
+},
+
+zh:{
+arrival:["🧭 如何到达公寓？","<p><strong>Aurora公寓</strong><br>兹拉蒂博尔 Obudojevica</p><p>入住时间为<strong>14:00以后</strong>。</p><button class='primary' onclick=\"navigate('Apartman Aurora Zlatibor')\">🧭 打开导航</button>"],
+wifi:["📶 Wi-Fi","<p>整个公寓均可使用Wi-Fi。</p><div class='copy'><span><strong>网络：</strong> AuroraGuest<br><strong>密码：</strong> Zlatibor2026!</span><button onclick=\"copyText('Zlatibor2026!')\">复制密码</button></div>"],
+parking:["🅿️ 停车","<p>为客人提供一个停车位。</p>"],
+heating:["🌡️ 暖气","<p>温度通过客厅的温控器调节。</p><ul><li>使用<strong>+</strong>或<strong>−</strong>调节。</li><li>建议温度为22–23°C。</li><li>如有问题，请联系房东。</li></ul>"],
+rules:["📋 住宿规则","<ul><li>安静时间：<strong>22:00–08:00</strong>。</li><li>公寓内禁止吸烟。</li><li>请爱护公寓设施。</li><li>未经同意不得举办聚会。</li></ul>"],
+checkout:["👋 退房","<p>退房时间为<strong>10:00以前</strong>。</p><ul><li>检查个人物品。</li><li>关闭空调并关好窗户。</li><li>保持公寓整洁。</li><li>将钥匙放回指定位置。</li></ul>"],
+help:["🆘 帮助","<p>入住期间如有任何问题，请联系房东。</p><div class='contact-modal'><a class='whatsapp' href='https://wa.me/381601234567' target='_blank'>WhatsApp</a><a class='viber' href='viber://chat?number=%2B381601234567'>Viber</a><a class='primary' href='tel:+381601234567'>☎️ 联系房东</a></div>"],
+feedback:["⭐ 您的评价","<p>感谢您的入住。您的评价对我们非常重要。</p><div class='rating'><button onclick='rate(1)'>★</button><button onclick='rate(2)'>★</button><button onclick='rate(3)'>★</button><button onclick='rate(4)'>★</button><button onclick='rate(5)'>★</button></div>"],
+apartment:["🏠 公寓","<div class='list'><div class='listrow'><div class='big'>🌡️</div><div><h3>暖气</h3><p>温控器位于客厅。</p></div></div><div class='listrow'><div class='big'>❄️</div><div><h3>空调</h3><p>遥控器在柜子上。</p></div></div><div class='listrow'><div class='big'>📺</div><div><h3>智能电视</h3><p>可使用Netflix和YouTube。</p></div></div></div>"]
 }
 
-function closeModal(){document.getElementById('modal').classList.remove('show');document.body.style.overflow=''}
-function closeOnBackdrop(e){if(e.target.id==='modal')closeModal()}
-function navigate(place){window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(place),'_blank')}
-function copyText(t){navigator.clipboard?.writeText(t);alert(currentLang==='sr'?'Šifra je kopirana.':'Password copied.')}
-function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
-function rate(n){document.querySelectorAll('.rating button').forEach((b,i)=>b.classList.toggle('active',i<n));}
+};
 
-// LOGIKA ZA SLAJDER
-const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');let si=0;
-setInterval(()=>{
-  slides[si].classList.remove('active');dots[si].classList.remove('active');
-  si=(si+1)%slides.length;
-  slides[si].classList.add('active');dots[si].classList.add('active');
-},4500);
 
-// LOGIKA ZA GREB-GREB KARTICU
-const code='AURORA10-'+Math.random().toString(36).slice(2,8).toUpperCase();
-document.getElementById('discountCode').textContent=code;
-const c=document.getElementById('scratchCanvas'),x=c.getContext('2d');
-function initScratch(){
-  let r=c.getBoundingClientRect(),d=devicePixelRatio||1;
-  if(r.width===0) return; // Zbog modala
-  c.width=r.width*d;c.height=r.height*d;x.scale(d,d);
-  x.globalCompositeOperation='source-over';
-  x.fillStyle='#aeb4ba';x.fillRect(0,0,r.width,r.height);
-  x.fillStyle='#56606b';x.font='800 16px system-ui';x.textAlign='center';
-  x.fillText(UI[currentLang].scratch_mask, r.width/2, r.height/2+5);
+/* =====================================================
+   JEZIK
+===================================================== */
+
+let currentLanguage="sr";
+
+function setLanguage(lang){
+
+currentLanguage=lang;
+
+const t=translations[lang];
+
+document.documentElement.lang=lang;
+
+document.querySelectorAll("[data-i18n]").forEach(el=>{
+
+const key=el.getAttribute("data-i18n");
+
+if(t[key]!==undefined){
+el.textContent=t[key];
 }
-setTimeout(initScratch,100);
-let down=false;
-function rub(e){
-  if(!down)return;
-  let r=c.getBoundingClientRect(),t=e.touches?e.touches[0]:e;
-  x.globalCompositeOperation='destination-out';x.beginPath();
-  x.arc(t.clientX-r.left,t.clientY-r.top,23,0,Math.PI*2);x.fill()
+
+});
+
+
+document.getElementById("heroTitle").innerHTML=t.heroTitle;
+document.getElementById("heroText").textContent=t.heroText;
+
+document.getElementById("languageButton").textContent={
+sr:"SR ▾",
+en:"EN ▾",
+de:"DE ▾",
+ru:"RU ▾",
+zh:"中文 ▾"
+}[lang];
+
+closeModal();
+
 }
-c.addEventListener('pointerdown',e=>{down=true;rub(e)});
-c.addEventListener('pointermove',rub);
-addEventListener('pointerup',()=>down=false);
-</script>
-</body>
-</html>
+
+
+/* =====================================================
+   MODAL
+=====================================================
+```
