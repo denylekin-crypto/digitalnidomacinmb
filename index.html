@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MB Lux Zlatibor - Digitalni Domaćin</title>
+    <title>MB Lux Zlatibor - Premium Domaćin</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -15,15 +15,17 @@
                 extend: {
                     colors: {
                         deepblue: {
+                            950: '#030B17', /* Very dark blue, acting as our "black" replacement */
                             900: '#061428',
                             800: '#0A2240',
                             700: '#113059',
                             600: '#184275'
                         },
                         gold: {
-                            light: '#F3E5AB',
+                            light: '#FDF5D3',
                             DEFAULT: '#D4AF37',
-                            dark: '#AA8822'
+                            dark: '#AA8822',
+                            shimmer: '#F3E5AB'
                         }
                     },
                     fontFamily: {
@@ -31,8 +33,11 @@
                         serif: ['Playfair Display', 'serif'],
                     },
                     boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(10, 34, 64, 0.3)',
-                        'gold': '0 4px 20px 0 rgba(212, 175, 55, 0.3)'
+                        /* Custom shadows using deep blue instead of black */
+                        'glass': '0 12px 40px 0 rgba(6, 20, 40, 0.6)',
+                        'glass-sm': '0 4px 15px 0 rgba(6, 20, 40, 0.4)',
+                        'gold-glow': '0 8px 30px 0 rgba(212, 175, 55, 0.4)',
+                        'inner-blue': 'inset 0 2px 10px 0 rgba(6, 20, 40, 0.5)'
                     }
                 }
             }
@@ -41,34 +46,65 @@
 
     <style>
         :root {
-            --bg-color: #061428;
-            --text-color: #F9FAFB;
+            --text-main: #FFFFFF;
+            --text-muted: #E2E8F0; /* Slate-200 */
         }
         
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
             -webkit-font-smoothing: antialiased;
-            overscroll-behavior: none; /* Prevents bounce effect on iOS */
+            overscroll-behavior: none;
+            /* Mountain Background */
+            background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
         }
 
-        /* Glassmorphism utilities */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Ambient background overlay to ensure text readability and no black */
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(6, 20, 40, 0.65) 0%, rgba(10, 34, 64, 0.85) 100%);
+            backdrop-filter: blur(15px); /* Heavy blur on the mountain */
+            -webkit-backdrop-filter: blur(15px);
+            z-index: -1;
         }
 
-        .glass-header {
-            background: linear-gradient(to bottom, rgba(6, 20, 40, 0.9) 0%, rgba(6, 20, 40, 0) 100%);
+        /* App Container constrained to mobile size */
+        .app-container {
+            max-width: 450px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 120px; /* Space for FAB */
+            box-shadow: 0 0 50px rgba(6, 20, 40, 0.8);
+            background-color: rgba(6, 20, 40, 0.2); /* Slight tint over the blur */
         }
 
-        /* Accordion transition */
+        /* Glass Panel Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: var(--tw-shadow-glass);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:active {
+            transform: scale(0.99);
+        }
+
+        /* Accordion mechanics */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease, opacity 0.3s ease;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
             opacity: 0;
         }
         
@@ -77,58 +113,89 @@
         }
 
         .accordion-icon {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .accordion-btn.active .accordion-icon {
             transform: rotate(180deg);
         }
 
-        /* Scratch Card styles */
-        #scratch-container {
+        /* Scratch Card */
+        #scratch-wrapper {
             position: relative;
             width: 100%;
-            height: 150px;
-            border-radius: 1rem;
+            height: 160px;
+            border-radius: 16px;
             overflow: hidden;
-            user-select: none;
+            border: 1px solid rgba(212, 175, 55, 0.4); /* Gold border */
+            box-shadow: inset 0 0 20px rgba(6, 20, 40, 0.8);
         }
         
         #scratch-canvas {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 3;
             cursor: pointer;
-            touch-action: none; /* Crucial for mobile scratching */
+            touch-action: none;
         }
 
-        #scratch-content {
+        #scratch-result {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0A2240, #113059);
-            color: #D4AF37;
+            background: radial-gradient(circle, #113059 0%, #061428 100%);
+            padding: 1rem;
+            text-align: center;
         }
 
-        /* Floating toast message */
+        /* Floating Action Button (FAB) Area */
+        .fab-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            pointer-events: none; /* Let clicks pass through empty space */
+            z-index: 50;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 30px;
+            background: linear-gradient(to top, rgba(6, 20, 40, 0.95) 0%, rgba(6, 20, 40, 0) 100%);
+        }
+
+        .fab-button {
+            pointer-events: auto;
+            width: 90%;
+            max-width: 400px;
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 40%, #AA8822 100%);
+            color: #030B17; /* Deepest blue instead of black */
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3), inset 0 2px 5px rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .fab-button:active {
+            transform: scale(0.96) translateY(2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Toast Message */
         .toast {
             position: fixed;
-            bottom: 100px;
+            top: 40px;
             left: 50%;
-            transform: translateX(-50%) translateY(100px);
+            transform: translateX(-50%) translateY(-100px);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 1000;
+            background: rgba(212, 175, 55, 0.95); /* Gold bg */
+            color: #030B17;
+            border: 1px solid #FDF5D3;
         }
         
         .toast.show {
@@ -136,261 +203,238 @@
             opacity: 1;
         }
 
-        /* Hide scrollbar for clean app look */
         ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
-        }
-        
-        /* Mobile max-width container for desktop viewing */
-        .app-container {
-            max-width: 480px;
-            margin: 0 auto;
-            min-height: 100vh;
-            position: relative;
-            background-color: var(--bg-color);
-            box-shadow: 0 0 40px rgba(10, 34, 64, 0.8);
-            padding-bottom: 90px; /* Space for fixed button */
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-overlay"></div>
+
     <div class="app-container">
         
-        <!-- Hero Section -->
-        <div class="relative h-72 w-full overflow-hidden rounded-b-[2.5rem] shadow-glass">
-            <!-- Background Image -->
-            <img src="1791047087278.jpeg" alt="MB Lux Zlatibor Interijer" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0A2240/D4AF37?text=MB+Lux+Zlatibor'">
+        <!-- Header Section -->
+        <div class="relative h-80 w-full overflow-hidden rounded-b-[2.5rem] shadow-glass mb-8">
+            <!-- Cover Photo -->
+            <img src="1791047087278.jpeg" alt="MB Lux Zlatibor" class="absolute inset-0 w-full h-full object-cover">
             
-            <!-- Gradient Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-deepblue-900 via-deepblue-900/60 to-deepblue-900/20"></div>
+            <!-- Elegant Gradient Overlay (Blue to transparent, NO BLACK) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-deepblue-900 via-deepblue-900/50 to-deepblue-900/10"></div>
             
-            <!-- Top Header with Logo -->
-            <div class="absolute top-0 w-full p-6 flex flex-col items-center z-10">
-                <div class="w-24 h-24 rounded-full border-2 border-gold p-1 shadow-gold backdrop-blur-sm bg-white/10 mb-3">
-                    <img src="1000027343.jpg" alt="MB Lux Logo" class="w-full h-full rounded-full object-cover" onerror="this.src='https://placehold.co/100x100/061428/D4AF37?text=MB'">
+            <!-- Content over image -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center pt-8 z-10">
+                <!-- Circular Logo -->
+                <div class="w-28 h-28 rounded-full border-[3px] border-gold p-1 shadow-gold-glow mb-4 backdrop-blur-md bg-white/5">
+                    <img src="1000027343.jpg" alt="MB Lux Logo" class="w-full h-full rounded-full object-cover shadow-inner-blue">
                 </div>
-                <h1 class="text-3xl font-serif text-white tracking-wide text-center drop-shadow-md">MB Lux</h1>
-                <p class="text-gold font-light tracking-widest text-sm uppercase mt-1 drop-shadow-md">Zlatibor</p>
+                
+                <h1 class="text-3xl font-serif text-white tracking-wide text-center drop-shadow-md">
+                    Dobrodošli u <span class="text-gold">MB Lux</span>
+                </h1>
+                <div class="h-1 w-12 bg-gold mt-3 rounded-full opacity-80"></div>
             </div>
         </div>
 
-        <!-- Welcome Message -->
-        <div class="px-6 -mt-6 relative z-20">
-            <div class="glass-panel rounded-3xl p-6 shadow-glass text-center">
-                <h2 class="text-xl font-semibold text-white mb-2">Dobrodošli u Vaš dom!</h2>
-                <p class="text-blue-100/80 text-sm font-light leading-relaxed">
-                    Želimo Vam savršen odmor na Zlatiboru. Ovde imate sve potrebne informacije za bezbrižan boravak. Uživajte u komforu.
-                </p>
-            </div>
-        </div>
+        <!-- Accordion Menu Items -->
+        <div class="px-5 space-y-4">
 
-        <!-- Main Content Menu (Accordion) -->
-        <div class="px-5 mt-6 space-y-4">
-
-            <!-- Item 1: Lokacija & Navigacija -->
-            <div class="glass-panel rounded-2xl overflow-hidden">
-                <button class="accordion-btn w-full px-5 py-4 flex items-center justify-between text-left focus:outline-none">
+            <!-- Item 1: Lokacija i Parking -->
+            <div class="glass-card">
+                <button class="accordion-btn w-full px-5 py-5 flex items-center justify-between text-left focus:outline-none rounded-2xl">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full bg-deepblue-700 text-gold flex items-center justify-center shadow-inner border border-white/5">
-                            <i class="fa-solid fa-map-location-dot text-lg"></i>
+                        <div class="w-12 h-12 rounded-xl bg-deepblue-800/80 text-gold flex items-center justify-center border border-gold/20 shadow-glass-sm">
+                            <i class="fa-solid fa-location-dot text-xl"></i>
                         </div>
-                        <span class="font-medium text-white text-lg">Lokacija i Navigacija</span>
+                        <span class="font-medium text-white text-[17px] tracking-wide">Lokacija i Parking</span>
                     </div>
-                    <i class="fa-solid fa-chevron-down text-gold accordion-icon text-sm"></i>
+                    <i class="fa-solid fa-chevron-down text-gold/70 accordion-icon"></i>
                 </button>
                 <div class="accordion-content">
-                    <div class="px-5 pb-5 pt-1 text-blue-100/80 text-sm">
-                        <p class="mb-4">Naš apartman se nalazi u srcu Zlatibora. Kliknite na dugme ispod da otvorite tačnu rutu u Google mapama.</p>
-                        <a href="https://maps.google.com/?q=Zlatibor" target="_blank" class="block w-full py-3 bg-deepblue-600 hover:bg-deepblue-500 rounded-xl text-center text-white font-medium border border-blue-400/20 transition-colors shadow-lg">
-                            <i class="fa-solid fa-location-arrow mr-2"></i> Pokreni navigaciju
+                    <div class="px-5 pb-6 pt-2">
+                        <p class="text-blue-100/90 text-[15px] font-light leading-relaxed mb-4">
+                            Naš objekat se nalazi na premijum lokaciji na Zlatiboru. Privatni parking je obezbeđen ispred zgrade (Mesto <strong class="text-white font-medium">MB-14</strong>). Rampa očitava Vaše tablice.
+                        </p>
+                        <a href="https://maps.google.com/?q=Zlatibor" target="_blank" class="flex items-center justify-center w-full py-3.5 bg-white/10 hover:bg-white/20 rounded-xl text-white font-medium border border-white/20 transition-all">
+                            <i class="fa-solid fa-map text-gold mr-3"></i> Otvori Google Mape
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 2: Parking -->
-            <div class="glass-panel rounded-2xl overflow-hidden">
-                <button class="accordion-btn w-full px-5 py-4 flex items-center justify-between text-left focus:outline-none">
+            <!-- Item 2: Wi-Fi Mreža -->
+            <div class="glass-card">
+                <button class="accordion-btn w-full px-5 py-5 flex items-center justify-between text-left focus:outline-none rounded-2xl">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full bg-deepblue-700 text-gold flex items-center justify-center shadow-inner border border-white/5">
-                            <i class="fa-solid fa-square-parking text-lg"></i>
+                        <div class="w-12 h-12 rounded-xl bg-deepblue-800/80 text-gold flex items-center justify-center border border-gold/20 shadow-glass-sm">
+                            <i class="fa-solid fa-wifi text-xl"></i>
                         </div>
-                        <span class="font-medium text-white text-lg">Parking Mesto</span>
+                        <span class="font-medium text-white text-[17px] tracking-wide">Wi-Fi Mreža</span>
                     </div>
-                    <i class="fa-solid fa-chevron-down text-gold accordion-icon text-sm"></i>
+                    <i class="fa-solid fa-chevron-down text-gold/70 accordion-icon"></i>
                 </button>
                 <div class="accordion-content">
-                    <div class="px-5 pb-5 pt-1 text-blue-100/80 text-sm">
-                        <p class="mb-3">Obezbeđeno Vam je privatno parking mesto ispred zgrade.</p>
-                        <div class="bg-deepblue-800 rounded-xl p-4 border border-white/10 flex items-center justify-between">
-                            <div>
-                                <span class="block text-xs text-blue-200/60 uppercase tracking-wider mb-1">Oznaka mesta</span>
-                                <span class="text-xl font-bold text-white">MB-14</span>
+                    <div class="px-5 pb-6 pt-2">
+                        <div class="flex flex-col gap-3">
+                            <div class="bg-deepblue-900/60 rounded-xl p-4 border border-white/10 shadow-inner-blue">
+                                <span class="block text-[11px] text-blue-200/60 uppercase tracking-widest mb-1">Mreža (SSID)</span>
+                                <span class="text-lg font-medium text-white">MB_Lux_Premium</span>
                             </div>
-                            <i class="fa-solid fa-car text-3xl text-white/10"></i>
-                        </div>
-                        <p class="mt-3 text-xs text-blue-200/60"><i class="fa-solid fa-circle-info mr-1 text-gold"></i> Rampa se otvara automatski očitavanjem tablica koje ste nam dostavili.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 3: Wi-Fi -->
-            <div class="glass-panel rounded-2xl overflow-hidden">
-                <button class="accordion-btn w-full px-5 py-4 flex items-center justify-between text-left focus:outline-none">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full bg-deepblue-700 text-gold flex items-center justify-center shadow-inner border border-white/5">
-                            <i class="fa-solid fa-wifi text-lg"></i>
-                        </div>
-                        <span class="font-medium text-white text-lg">Wi-Fi Internet</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-gold accordion-icon text-sm"></i>
-                </button>
-                <div class="accordion-content">
-                    <div class="px-5 pb-5 pt-1">
-                        <div class="bg-deepblue-800 rounded-xl p-4 border border-white/10 mb-3">
-                            <span class="block text-xs text-blue-200/60 uppercase tracking-wider mb-1">Mreža (SSID)</span>
-                            <span class="text-lg font-medium text-white">MB_Lux_Guest</span>
-                        </div>
-                        <div class="bg-deepblue-800 rounded-xl p-4 border border-white/10 flex items-center justify-between">
-                            <div>
-                                <span class="block text-xs text-blue-200/60 uppercase tracking-wider mb-1">Šifra (Password)</span>
-                                <span class="text-lg font-mono font-medium text-gold" id="wifi-pass">Zlatibor2026Lux</span>
+                            <div class="bg-deepblue-900/60 rounded-xl p-4 border border-white/10 shadow-inner-blue flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[11px] text-blue-200/60 uppercase tracking-widest mb-1">Šifra (Password)</span>
+                                    <span class="text-lg font-mono font-medium text-gold" id="wifi-pass">ZlatiborLux2024</span>
+                                </div>
+                                <button onclick="copyWifi()" class="w-12 h-12 rounded-xl bg-gold/10 hover:bg-gold/20 text-gold flex items-center justify-center border border-gold/30 transition-all shadow-glass-sm">
+                                    <i class="fa-regular fa-copy text-xl"></i>
+                                </button>
                             </div>
-                            <button onclick="copyWifi()" class="w-10 h-10 rounded-full bg-gold/10 hover:bg-gold/20 text-gold flex items-center justify-center transition-colors">
-                                <i class="fa-regular fa-copy"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 4: Grejanje i Uređaji -->
-            <div class="glass-panel rounded-2xl overflow-hidden">
-                <button class="accordion-btn w-full px-5 py-4 flex items-center justify-between text-left focus:outline-none">
+            <!-- Item 3: Grejanje i Uređaji -->
+            <div class="glass-card">
+                <button class="accordion-btn w-full px-5 py-5 flex items-center justify-between text-left focus:outline-none rounded-2xl">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full bg-deepblue-700 text-gold flex items-center justify-center shadow-inner border border-white/5">
-                            <i class="fa-solid fa-temperature-half text-lg"></i>
+                        <div class="w-12 h-12 rounded-xl bg-deepblue-800/80 text-gold flex items-center justify-center border border-gold/20 shadow-glass-sm">
+                            <i class="fa-solid fa-temperature-half text-xl"></i>
                         </div>
-                        <span class="font-medium text-white text-lg">Grejanje i Uređaji</span>
+                        <span class="font-medium text-white text-[17px] tracking-wide">Grejanje i Uređaji</span>
                     </div>
-                    <i class="fa-solid fa-chevron-down text-gold accordion-icon text-sm"></i>
+                    <i class="fa-solid fa-chevron-down text-gold/70 accordion-icon"></i>
                 </button>
                 <div class="accordion-content">
-                    <div class="px-5 pb-5 pt-1 text-blue-100/80 text-sm space-y-4">
-                        <div>
-                            <h4 class="text-white font-medium mb-1"><i class="fa-solid fa-fire-burner text-gold mr-2"></i>Grejanje</h4>
-                            <p>Podno grejanje je podešeno na optimalnih 23°C. Termostat se nalazi na zidu pored ulaznih vrata.</p>
+                    <div class="px-5 pb-6 pt-2 space-y-4">
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <h4 class="text-white font-medium mb-2 flex items-center"><i class="fa-solid fa-fire text-gold mr-2"></i>Grejanje</h4>
+                            <p class="text-blue-100/80 text-sm font-light leading-relaxed">Sistem podnog grejanja je automatski podešen. Termostat se nalazi pored vrata i možete korigovati temperaturu +/- 2 stepena.</p>
                         </div>
-                        <div class="w-full h-[1px] bg-white/10"></div>
-                        <div>
-                            <h4 class="text-white font-medium mb-1"><i class="fa-solid fa-tv text-gold mr-2"></i>Televizija</h4>
-                            <p>Na raspolaganju imate Smart TV. Netflix nalog je već ulogovan, slobodno izaberite "Guest" profil.</p>
-                        </div>
-                        <div class="w-full h-[1px] bg-white/10"></div>
-                        <div>
-                            <h4 class="text-white font-medium mb-1"><i class="fa-solid fa-shower text-gold mr-2"></i>Bojler</h4>
-                            <p>Bojler je stalno uključen, tople vode ima uvek. Molimo Vas da ne gasite prekidač za bojler.</p>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <h4 class="text-white font-medium mb-2 flex items-center"><i class="fa-solid fa-shower text-gold mr-2"></i>Bojler</h4>
+                            <p class="text-blue-100/80 text-sm font-light leading-relaxed">Bojler je stalno uključen na pametni režim. Molimo Vas da ne dirate glavni prekidač ispred kupatila.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 5: Poklon Grebalica -->
-            <div class="glass-panel rounded-2xl overflow-hidden border border-gold/30">
-                <button class="accordion-btn w-full px-5 py-4 flex items-center justify-between text-left focus:outline-none">
+            <!-- Item 4: Pravila Kuće -->
+            <div class="glass-card">
+                <button class="accordion-btn w-full px-5 py-5 flex items-center justify-between text-left focus:outline-none rounded-2xl">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full bg-gold text-deepblue-900 flex items-center justify-center shadow-gold">
-                            <i class="fa-solid fa-gift text-lg"></i>
+                        <div class="w-12 h-12 rounded-xl bg-deepblue-800/80 text-gold flex items-center justify-center border border-gold/20 shadow-glass-sm">
+                            <i class="fa-solid fa-book-open text-xl"></i>
                         </div>
-                        <span class="font-semibold text-gold text-lg">Vaš Poklon</span>
+                        <span class="font-medium text-white text-[17px] tracking-wide">Pravila Kuće</span>
                     </div>
-                    <i class="fa-solid fa-chevron-down text-gold accordion-icon text-sm"></i>
+                    <i class="fa-solid fa-chevron-down text-gold/70 accordion-icon"></i>
                 </button>
                 <div class="accordion-content">
-                    <div class="px-5 pb-5 pt-1 text-center">
-                        <p class="text-sm text-white mb-4">Ogrebi polje ispod da otkriješ svoj jedinstveni promo kod za <strong class="text-gold">10% popusta</strong> na sledeću rezervaciju!</p>
+                    <div class="px-5 pb-6 pt-2 text-sm text-blue-100/80 font-light leading-relaxed space-y-3">
+                        <p class="flex items-start"><i class="fa-regular fa-clock text-gold mt-1 mr-3 w-4"></i> Check-out je do 11:00h.</p>
+                        <p class="flex items-start"><i class="fa-solid fa-volume-low text-gold mt-1 mr-3 w-4"></i> Vreme odmora (bez buke) je od 14h-17h i 22h-08h.</p>
+                        <p class="flex items-start"><i class="fa-solid fa-trash-can text-gold mt-1 mr-3 w-4"></i> Kontejneri za smeće nalaze se sa zadnje strane zgrade.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5: Premium Scratch Card -->
+            <div class="glass-card border-gold/40 shadow-gold-glow">
+                <button class="accordion-btn w-full px-5 py-5 flex items-center justify-between text-left focus:outline-none rounded-2xl">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-light via-gold to-gold-dark text-deepblue-950 flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-gift text-xl"></i>
+                        </div>
+                        <span class="font-serif font-bold text-gold text-xl tracking-wide">Vaš Poklon</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-gold/70 accordion-icon"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="px-5 pb-6 pt-2">
+                        <p class="text-sm text-blue-100/90 font-light text-center mb-4">
+                            Ogrebi polje ispod da otkriješ svoj jedinstveni promo kod za <strong class="text-gold font-semibold">10% popusta</strong> na sledeću rezervaciju!
+                        </p>
                         
-                        <!-- Scratch Card Container -->
-                        <div id="scratch-container" class="shadow-lg border-2 border-gold/20">
-                            <!-- Hidden Content -->
-                            <div id="scratch-content">
-                                <span class="text-xs uppercase tracking-widest text-blue-200/80 mb-1">Tvoj kod</span>
-                                <span id="secret-code" class="text-3xl font-bold tracking-wider font-mono drop-shadow-md">MB...</span>
-                                <span class="text-xs text-blue-200/60 mt-2">Slikaj ekran (Screenshot)</span>
+                        <!-- Canvas Container -->
+                        <div id="scratch-wrapper">
+                            <!-- Revealed Result underneath -->
+                            <div id="scratch-result">
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-gold/70 mb-1">Promo Kod</span>
+                                <span id="promo-code" class="text-3xl font-bold font-mono tracking-widest text-white drop-shadow-md mb-2">MB-XXXX</span>
+                                <p class="text-[11px] text-blue-100/70 font-light px-2">
+                                    Osvojili ste 10% popusta! Slikajte (Screenshot) ovaj ekran i pošaljite nam prilikom sledeće rezervacije.
+                                </p>
                             </div>
-                            <!-- Canvas overlay -->
+                            <!-- Golden Foil Canvas -->
                             <canvas id="scratch-canvas"></canvas>
                         </div>
-
-                        <div class="mt-4 bg-deepblue-800/50 p-3 rounded-xl border border-white/5 text-xs text-blue-100/70 text-left">
-                            <i class="fa-solid fa-camera text-gold mr-1"></i>
-                            Kada otkrijete kod, <strong>napravite Screenshot (slikajte ekran)</strong>. Prilikom sledeće rezervacije pošaljite sliku vlasniku kako biste ostvarili popust! Kod važi godinu dana.
-                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Bottom spacing -->
-            <div class="h-6"></div>
+
         </div>
 
-        <!-- Fixed Bottom Button -->
-        <div class="fixed bottom-0 left-0 w-full z-50 flex justify-center pb-6 pt-4 bg-gradient-to-t from-deepblue-900 via-deepblue-900/90 to-transparent">
-            <div class="w-full max-w-[480px] px-6">
-                <a href="tel:+38160000000" class="flex items-center justify-center w-full bg-gradient-to-r from-gold-dark via-gold to-gold-dark text-deepblue-900 font-bold py-4 rounded-2xl shadow-gold active:scale-95 transition-transform duration-200 text-lg">
-                    <div class="bg-white/20 p-2 rounded-full mr-3 backdrop-blur-sm">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    Pozovite Domaćina
-                </a>
-            </div>
+        <!-- Fixed Floating Action Button (FAB) -->
+        <div class="fab-container">
+            <a href="tel:+38160000000" class="fab-button flex items-center justify-center py-4 rounded-[1.5rem]">
+                <div class="bg-deepblue-950/10 p-2.5 rounded-xl mr-3 flex items-center justify-center">
+                    <i class="fa-solid fa-phone-volume text-xl"></i>
+                </div>
+                <span class="font-bold text-lg tracking-wide">Pozovite Domaćina</span>
+            </a>
         </div>
 
         <!-- Toast Notification -->
-        <div id="toast" class="toast glass-panel bg-deepblue-700/90 border border-gold/50 text-white px-6 py-3 rounded-full flex items-center shadow-lg font-medium text-sm">
-            <i class="fa-solid fa-circle-check text-gold mr-2 text-lg"></i> Šifra je kopirana!
+        <div id="toast" class="toast px-6 py-3.5 rounded-2xl flex items-center font-medium shadow-glass">
+            <i class="fa-solid fa-check-circle text-deepblue-950 mr-2 text-lg"></i> Šifra uspešno kopirana!
         </div>
 
     </div>
 
     <script>
-        // --- Accordion Logic ---
+        // --- Accordion Logic with smooth transitions ---
         const accordionBtns = document.querySelectorAll('.accordion-btn');
 
         accordionBtns.forEach(btn => {
             btn.addEventListener('click', function() {
+                // Close all others
+                accordionBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn && otherBtn.classList.contains('active')) {
+                        otherBtn.classList.remove('active');
+                        otherBtn.nextElementSibling.style.maxHeight = null;
+                        otherBtn.nextElementSibling.classList.remove('open');
+                    }
+                });
+
+                // Toggle current
                 this.classList.toggle('active');
                 const content = this.nextElementSibling;
                 
                 if (content.style.maxHeight) {
-                    // Close it
                     content.style.maxHeight = null;
                     content.classList.remove('open');
                 } else {
-                    // Open it
                     content.style.maxHeight = content.scrollHeight + "px";
                     content.classList.add('open');
                     
-                    // If this is the scratch card container, initialize canvas (delayed to ensure size is correct)
-                    if(content.querySelector('#scratch-canvas') && !window.scratchInitialized) {
-                        setTimeout(() => initScratchCard(), 100);
-                        window.scratchInitialized = true;
+                    // Initialize scratch card only when opened to ensure correct dimensions
+                    if(content.querySelector('#scratch-canvas') && !window.scratchInit) {
+                        setTimeout(() => initScratchCard(), 150);
+                        window.scratchInit = true;
                     }
                 }
             });
         });
 
-        // --- Copy WiFi Password Logic ---
+        // --- Copy Wi-Fi Logic ---
         function copyWifi() {
             const password = document.getElementById('wifi-pass').innerText;
             
-            // Try modern clipboard API
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(password).then(showToast);
             } else {
-                // Fallback for older browsers or iframes
                 let textArea = document.createElement("textarea");
                 textArea.value = password;
                 textArea.style.position = "fixed";
@@ -402,7 +446,7 @@
                     document.execCommand('copy');
                     showToast();
                 } catch (err) {
-                    console.error('Neuspešno kopiranje', err);
+                    console.error('Kopiranje nije podržano');
                 }
                 textArea.remove();
             }
@@ -416,68 +460,69 @@
             }, 3000);
         }
 
-        // --- Scratch Card Logic ---
-        window.scratchInitialized = false;
+        // --- Premium Scratch Card Logic ---
+        window.scratchInit = false;
 
         function initScratchCard() {
             const canvas = document.getElementById('scratch-canvas');
-            const container = document.getElementById('scratch-container');
+            const wrapper = document.getElementById('scratch-wrapper');
             const ctx = canvas.getContext('2d');
             
-            // Generate Random Code
+            // Generate Code
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let randomCode = 'MB-';
-            for (let i = 0; i < 5; i++) {
-                randomCode += chars.charAt(Math.floor(Math.random() * chars.length));
+            let code = 'MBLUX-';
+            for (let i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-            document.getElementById('secret-code').innerText = randomCode;
+            document.getElementById('promo-code').innerText = code;
 
-            // Set canvas size based on container
-            canvas.width = container.offsetWidth;
-            canvas.height = container.offsetHeight;
+            // Dimensions
+            canvas.width = wrapper.offsetWidth;
+            canvas.height = wrapper.offsetHeight;
 
-            // Draw Gold Layer
-            // Background
-            ctx.fillStyle = '#D4AF37';
+            // Draw Premium Gold Foil
+            const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            grad.addColorStop(0, '#D4AF37');
+            grad.addColorStop(0.3, '#FDF5D3');
+            grad.addColorStop(0.5, '#AA8822');
+            grad.addColorStop(0.7, '#F3E5AB');
+            grad.addColorStop(1, '#D4AF37');
+            
+            ctx.fillStyle = grad;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Add some texture/gradient to look like a scratch card
-            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, '#D4AF37');
-            gradient.addColorStop(0.5, '#F3E5AB');
-            gradient.addColorStop(1, '#AA8822');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Add "Ogrebi ovde" text
-            ctx.font = 'bold 20px Inter, sans-serif';
-            ctx.fillStyle = '#061428';
+            // Add slight noise/pattern (optional premium touch)
+            for (let i = 0; i < 3000; i++) {
+                ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.05)';
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1.5, 1.5);
+            }
+
+            // Draw "Ogrebi ovde" Text
+            ctx.font = '600 22px Inter, sans-serif';
+            ctx.fillStyle = '#061428'; // Deep blue text on gold
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
+            // Subtle shadow for text
+            ctx.shadowColor = 'rgba(255,255,255,0.4)';
+            ctx.shadowBlur = 4;
             ctx.fillText('✨ Ogrebi ovde ✨', canvas.width / 2, canvas.height / 2);
+            // reset shadow
+            ctx.shadowBlur = 0;
 
             let isDrawing = false;
-            let scratchedArea = 0;
-            const totalArea = canvas.width * canvas.height;
-            const brushSize = 25;
+            const brushSize = 28;
 
-            // Change composite operation to erase
             ctx.globalCompositeOperation = 'destination-out';
 
             function getMousePos(e) {
                 const rect = canvas.getBoundingClientRect();
                 let clientX = e.clientX;
                 let clientY = e.clientY;
-                
                 if (e.touches && e.touches.length > 0) {
                     clientX = e.touches[0].clientX;
                     clientY = e.touches[0].clientY;
                 }
-                
-                return {
-                    x: clientX - rect.left,
-                    y: clientY - rect.top
-                };
+                return { x: clientX - rect.left, y: clientY - rect.top };
             }
 
             function scratch(x, y) {
@@ -486,60 +531,49 @@
                 ctx.fill();
             }
 
-            function startScratch(e) {
+            function handleStart(e) {
                 isDrawing = true;
                 const pos = getMousePos(e);
                 scratch(pos.x, pos.y);
-                // Prevent scrolling while scratching on touch devices
                 if(e.type === 'touchstart') e.preventDefault(); 
             }
 
-            function moveScratch(e) {
+            function handleMove(e) {
                 if (!isDrawing) return;
                 const pos = getMousePos(e);
                 scratch(pos.x, pos.y);
                 if(e.type === 'touchmove') e.preventDefault();
             }
 
-            function endScratch() {
+            function handleEnd() {
                 isDrawing = false;
-                checkClearPercentage();
+                checkReveal();
             }
 
-            // Check if 50% is scratched to clear the whole canvas automatically
-            function checkClearPercentage() {
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                const pixels = imageData.data;
-                let clearPixels = 0;
-                
-                // check every 4th value (alpha channel)
+            function checkReveal() {
+                const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                let cleared = 0;
                 for (let i = 3; i < pixels.length; i += 4) {
-                    if (pixels[i] === 0) {
-                        clearPixels++;
-                    }
+                    if (pixels[i] === 0) cleared++;
                 }
                 
-                const clearPercentage = (clearPixels / (pixels.length / 4)) * 100;
+                const percent = (cleared / (pixels.length / 4)) * 100;
                 
-                if (clearPercentage > 50) {
-                    canvas.style.transition = 'opacity 0.5s ease';
+                if (percent > 45) { // If 45% scratched, reveal everything
+                    canvas.style.transition = 'opacity 0.6s ease';
                     canvas.style.opacity = '0';
-                    setTimeout(() => {
-                        canvas.style.display = 'none';
-                    }, 500);
+                    setTimeout(() => { canvas.style.pointerEvents = 'none'; }, 600);
                 }
             }
 
-            // Events
-            canvas.addEventListener('mousedown', startScratch);
-            canvas.addEventListener('mousemove', moveScratch);
-            canvas.addEventListener('mouseup', endScratch);
-            canvas.addEventListener('mouseleave', endScratch);
+            canvas.addEventListener('mousedown', handleStart);
+            canvas.addEventListener('mousemove', handleMove);
+            canvas.addEventListener('mouseup', handleEnd);
+            canvas.addEventListener('mouseleave', handleEnd);
 
-            // Touch events for mobile
-            canvas.addEventListener('touchstart', startScratch, {passive: false});
-            canvas.addEventListener('touchmove', moveScratch, {passive: false});
-            canvas.addEventListener('touchend', endScratch);
+            canvas.addEventListener('touchstart', handleStart, {passive: false});
+            canvas.addEventListener('touchmove', handleMove, {passive: false});
+            canvas.addEventListener('touchend', handleEnd);
         }
     </script>
 </body>
